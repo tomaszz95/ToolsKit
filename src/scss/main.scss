@@ -1,0 +1,132 @@
+$header-color-dark: rgb(19, 10, 10);
+$element-color-dark: rgb(29, 25, 25);
+$text-color-dark: rgb(241, 236, 236);
+
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	font-size: 62.5%;
+}
+
+body {
+	position: relative;
+	height: 100vh;
+	width: 100%;
+	font-family: 'Montserrat', sans-serif;
+}
+
+// HEADER
+
+.header {
+	width: 100%;
+	background-color: $header-color-dark;
+	&__container {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		max-width: 1280px;
+		padding: 2em;
+		margin: 0 auto;
+		&-logo {
+			display: flex;
+			align-items: center;
+			&-icon {
+				width: 30px;
+				height: 30px;
+			}
+			&-text {
+				margin-left: 1em;
+				font-size: 2.4rem;
+				color: $text-color-dark;
+				font-weight: bold;
+				letter-spacing: 1px;
+			}
+		}
+		&-theme {
+			position: relative;
+			width: 75px;
+			border-radius: 25px;
+			background-color: $header-color-dark;
+			border: 2px solid $text-color-dark;
+			cursor: pointer;
+			&-icon {
+				margin-left: 0.2em;
+				width: 25px;
+				height: 25px;
+				padding: 1em;
+				background-color: rgb(236, 233, 11);
+				border-radius: 50%;
+			}
+			&::before {
+				content: '';
+				position: absolute;
+				left: 14px;
+				width: 27px;
+				height: 27px;
+				border-radius: 50%;
+				background-color: $header-color-dark;
+			}
+		}
+	}
+}
+
+// NAV
+
+.nav {
+	width: 100%;
+	background-color: $element-color-dark;
+	&-container {
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		max-width: 1280px;
+		padding: 2em;
+		margin: 0 auto;
+	}
+	&-item {
+		display: flex;
+		justify-content: space-evenly;
+		align-items: center;
+		width: 18%;
+		padding: 0.7em 1.4em;
+		background-color: transparent;
+		border: 3px solid $text-color-dark;
+		border-radius: 20px;
+		cursor: pointer;
+		color: $text-color-dark;
+		transition: background-color 0.3s, color 0.3s, border 0.3s;
+		&__icon {
+			width: 30px;
+			height: 30px;
+		}
+		&__text {
+			display: none;
+			margin-left: 0.4em;
+			font-size: 1.6rem;
+			font-weight: bold;
+		}
+		&-active {
+			border: 3px solid rgb(51, 202, 14);
+			color: rgb(51, 202, 14);
+		}
+	}
+	&-item:hover {
+		background-color: #000;
+	}
+}
+
+@media (min-width: 992px) {
+	.nav {
+		&-item {
+			&__text {
+				display: flex;
+			}
+		}
+	}
+}

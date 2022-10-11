@@ -1,0 +1,144 @@
+:root {
+	--header-color: rgb(19, 10, 10);
+	--element-color: rgb(29, 25, 25);
+	--text-color: rgb(241, 236, 236);
+	--active-color: rgb(51, 202, 14);
+}
+
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	font-size: 62.5%;
+}
+
+body {
+	position: relative;
+	height: 100vh;
+	width: 100%;
+	font-family: 'Montserrat', sans-serif;
+}
+
+/* HEADER */
+
+.header {
+	width: 100%;
+	background-color: var(--header-color);
+}
+
+.header__container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	max-width: 1280px;
+	padding: 2em;
+	margin: 0 auto;
+}
+
+.header__container-logo {
+	display: flex;
+	align-items: center;
+}
+
+.header__container-logo-icon {
+	width: 30px;
+	height: 30px;
+}
+
+.header__container-logo-text {
+	margin-left: 1em;
+	font-size: 2.4rem;
+	color: var(--text-color);
+	font-weight: bold;
+	letter-spacing: 1px;
+}
+
+.header__container-theme {
+	position: relative;
+	width: 75px;
+	height: 32px;
+	border-radius: 25px;
+	background-color: var(--header-color);
+	border: 2px solid var(--text-color);
+	cursor: pointer;
+}
+
+.header__container-theme-icon {
+	position: absolute;
+	top: 0;
+	left: 2px;
+	width: 24px;
+	height: 24px;
+	padding: 1em;
+	background-color: rgb(252, 248, 6);
+	border-radius: 50%;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.header__container-theme-icon.active {
+	transform: translateX(40px);
+	background-color: rgb(9, 9, 17);
+}
+
+/* NAV */
+
+.nav {
+	width: 100%;
+	background-color: Var(--element-color);
+}
+
+.nav-container {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	max-width: 1280px;
+	padding: 2em;
+	margin: 0 auto;
+}
+
+.nav-item {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	width: 18%;
+	padding: 0.7em 1.4em;
+	background-color: transparent;
+	border: 3px solid var(--text-color);
+	border-radius: 20px;
+	cursor: pointer;
+	color: var(--text-color);
+	transition: background-color 0.3s;
+}
+
+.nav-item:hover {
+	background-color: var(--header-color);
+}
+
+.nav-item__icon {
+	width: 30px;
+	height: 30px;
+}
+
+.nav-item__text {
+	display: none;
+	margin-left: 0.4em;
+	font-size: 1.6rem;
+	font-weight: bold;
+}
+
+.nav-item-active {
+	border: 3px solid var(--active-color);
+	color: var(--active-color);
+	background-color: var(--header-color);
+}
+
+@media (min-width: 992px) {
+	.nav-item__text {
+		display: flex;
+	}
+}
