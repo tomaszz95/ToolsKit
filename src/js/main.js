@@ -1,3 +1,3 @@
-import { switchThemes } from './_switchThemes.js'
+import { switchPageThemes } from './_switchThemes.js'
 
-switchThemes()
+switchPageThemes()

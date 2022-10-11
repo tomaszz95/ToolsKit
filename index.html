@@ -1,11 +1,17 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Tomasz Żuber">
+    <meta name="description"
+        content="Page with a lot of usefull tools like calculator, todo list, place to make notes, wallet management and weather app.">
+    <meta name="keywords"
+        content="TodoList, Calculator, Notes, Note app, Wallet Management, Weather App, Weather">
     <title>ToolKit</title>
+    <script src="https://kit.fontawesome.com/8fa14ea516.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
@@ -15,37 +21,37 @@
 <body>
     <header class="header">
         <div class="header__container">
-            <div class="header__container-logo">
-                <img src="./src/img/tools-light.png" alt="Tools icon" class="header__container-logo-icon">
-                <p class="header__container-logo-text">ToolKit</p>
+            <div class="header__container--logo">
+                <i class="fa-solid fa-pen-ruler header__container--logo-icon"></i>
+                <p class="header__container--logo-text">ToolKit</p>
             </div>
-            <button class="header__container-theme" aria-label="Change page theme">
-                <div class="header__container-theme-icon"></div>
+            <button class="header__container--theme" aria-label="Change page theme">
+                <div class="header__container--theme-slider"></div>
             </button>
         </div>
     </header>
 
     <nav class="nav">
-        <div class="nav-container">
-            <button class="nav-item item-todo nav-item-active" aria-label="Change to Todo App">
-                <img src="./src/img/todo-light.png" alt="Todo Icon" class="nav-item__icon">
-                <p class="nav-item__text">Todo List</p>
+        <div class="nav__container">
+            <button class="nav__container--item item-todo nav__container--item-selected" aria-label="Change to Todo App">
+                <i class="fa-solid fa-list nav__container--item-icon"></i>
+                <p class="nav__container--item-text">Todo List</p>
             </button>
-            <button class="nav-item item-notes" aria-label="Change to Notes App">
-                <img src="./src/img/note-light.png" alt="Todo Icon" class="nav-item__icon">
-                <p class="nav-item__text">Notes App</p>
+            <button class="nav__container--item item-notes" aria-label="Change to Notes App">
+                <i class="fa-solid fa-note-sticky nav__container--item-icon"></i>
+                <p class="nav__container--item-text">Notes App</p>
             </button>
-            <button class="nav-item item-wallet" aria-label="Change to Wallet App">
-                <img src="./src/img/money-light.png" alt="Todo Icon" class="nav-item__icon">
-                <p class="nav-item__text">Expenses App</p>
+            <button class="nav__container--item item-wallet" aria-label="Change to Wallet App">
+                <i class="fa-solid fa-money-bill-wave nav__container--item-icon"></i>
+                <p class="nav__container--item-text">Expenses App</p>
             </button>
-            <button class="nav-item item-calc" aria-label="Change to Calculator App">
-                <img src="./src/img/calc-light.png" alt="Todo Icon" class="nav-item__icon">
-                <p class="nav-item__text">Calculator</p>
+            <button class="nav__container--item item-calc" aria-label="Change to Calculator App">
+                <i class="fa-solid fa-calculator nav__container--item-icon"></i>
+                <p class="nav__container--item-text">Calculator</p>
             </button>
-            <button class="nav-item item-weather" aria-label="Change to Weather App">
-                <img src="./src/img/weather-light.png" alt="Todo Icon" class="nav-item__icon">
-                <p class="nav-item__text">Weather App</p>
+            <button class="nav__container--item item-weather" aria-label="Change to Weather App">
+                <i class="fa-solid fa-cloud-sun nav__container--item-icon"></i>
+                <p class="nav__container--item-text">Weather App</p>
             </button>
         </div>
     </nav>

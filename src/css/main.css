@@ -20,7 +20,6 @@ html {
 body {
 	position: relative;
 	height: 100vh;
-	width: 100%;
 	font-family: 'Montserrat', sans-serif;
 }
 
@@ -40,17 +39,17 @@ body {
 	margin: 0 auto;
 }
 
-.header__container-logo {
+.header__container--logo {
 	display: flex;
 	align-items: center;
 }
 
-.header__container-logo-icon {
-	width: 30px;
-	height: 30px;
+.header__container--logo-icon {
+	font-size: 3em;
+	color: var(--text-color);
 }
 
-.header__container-logo-text {
+.header__container--logo-text {
 	margin-left: 1em;
 	font-size: 2.4rem;
 	color: var(--text-color);
@@ -58,17 +57,17 @@ body {
 	letter-spacing: 1px;
 }
 
-.header__container-theme {
+.header__container--theme {
 	position: relative;
 	width: 75px;
 	height: 32px;
 	border-radius: 25px;
 	background-color: var(--header-color);
-	border: 2px solid var(--text-color);
+	border: 3px solid var(--text-color);
 	cursor: pointer;
 }
 
-.header__container-theme-icon {
+.header__container--theme-slider {
 	position: absolute;
 	top: 0;
 	left: 2px;
@@ -80,8 +79,8 @@ body {
     transition: transform 0.3s, background-color 0.3s;
 }
 
-.header__container-theme-icon.active {
-	transform: translateX(40px);
+.header__container--theme-slider.active {
+	transform: translateX(38px);
 	background-color: rgb(9, 9, 17);
 }
 
@@ -92,7 +91,7 @@ body {
 	background-color: Var(--element-color);
 }
 
-.nav-container {
+.nav__container {
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
@@ -101,7 +100,7 @@ body {
 	margin: 0 auto;
 }
 
-.nav-item {
+.nav__container--item {
 	display: flex;
 	justify-content: space-evenly;
 	align-items: center;
@@ -115,30 +114,34 @@ body {
 	transition: background-color 0.3s;
 }
 
-.nav-item:hover {
+.nav__container--item:hover {
 	background-color: var(--header-color);
 }
 
-.nav-item__icon {
-	width: 30px;
-	height: 30px;
+.nav__container--item-icon {
+	font-size: 2em;
 }
 
-.nav-item__text {
+.nav__container--item-text {
 	display: none;
 	margin-left: 0.4em;
 	font-size: 1.6rem;
 	font-weight: bold;
 }
 
-.nav-item-active {
+.nav__container--item-selected {
 	border: 3px solid var(--active-color);
 	color: var(--active-color);
 	background-color: var(--header-color);
 }
 
+
+
+
+/* QUERIES */
+
 @media (min-width: 992px) {
-	.nav-item__text {
+	.nav__container--item-text {
 		display: flex;
 	}
 }
