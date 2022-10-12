@@ -1,0 +1,9 @@
+@media (min-width: 992px) {
+	.nav__title {
+		font-size: 4em;
+	}
+
+	.nav__container--item-text {
+		display: flex;
+	}
+}

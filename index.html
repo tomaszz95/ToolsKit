@@ -8,8 +8,7 @@
     <meta name="author" content="Tomasz Żuber">
     <meta name="description"
         content="Page with a lot of usefull tools like calculator, todo list, place to make notes, wallet management and weather app.">
-    <meta name="keywords"
-        content="TodoList, Calculator, Notes, Note app, Wallet Management, Weather App, Weather">
+    <meta name="keywords" content="TodoList, Calculator, Notes, Note app, Wallet Management, Weather App, Weather">
     <title>ToolKit</title>
     <script src="https://kit.fontawesome.com/8fa14ea516.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,8 +31,10 @@
     </header>
 
     <nav class="nav">
+        <h1 class="nav__title">Choose your app!</h1>
         <div class="nav__container">
-            <button class="nav__container--item item-todo nav__container--item-selected" aria-label="Change to Todo App">
+            <button class="nav__container--item item-todo nav__container--item-selected"
+                aria-label="Change to Todo App">
                 <i class="fa-solid fa-list nav__container--item-icon"></i>
                 <p class="nav__container--item-text">Todo List</p>
             </button>
@@ -56,6 +57,44 @@
         </div>
     </nav>
 
+    <main class="main">
+
+        <section class="todo">
+            <h2 class="app__title">Todo List</h2>
+            <div class="app__line"></div>
+            <div class="todo__info">
+                <h3 class="todo__info--title">Lista zadań:</h3>
+                <p class="todo__info--alert">Brak zadań na liście.</p>
+            </div>
+            <ul class="todo__container">
+                <li class="todo__item">
+                    <p class="todo__item-task">Umyć naczynia</p>
+                    <div class='todo__item-tools'>
+                        <button class='todo__item-tools--check' aria-label="Change to done task"><i class=" fa-solid fa-check"></i></button>
+                        <button class="todo__item-tools--edit" aria-label="Edit task">EDIT</button>
+                        <button class='todo__item-tools--delete' aria-label="Delete task"><i class="fa-solid fa-x"></i></button>
+                    </div>
+                </li>
+                <li class="todo__item">
+                    <p class="todo__item-task">Umyć pralke</p>
+                    <div class='todo__item-tools'>
+                        <button class='todo__item-tools--check'><i class=" fa-solid fa-check"></i></button>
+                        <button class="todo__item-tools--edit">EDIT</button>
+                        <button class='todo__item-tools--delete'><i class="fa-solid fa-x"></i></button>
+                    </div>
+                </li>
+                <li class="todo__item">
+                    <p class="todo__item-task todo-checked">Wyrzucić śmieci</p>
+                    <div class='todo__item-tools'>
+                        <button class='todo__item-tools--check'><i class=" fa-solid fa-check"></i></button>
+                        <button class="todo__item-tools--edit">EDIT</button>
+                        <button class='todo__item-tools--delete'><i class="fa-solid fa-x"></i></button>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+    </main>
 
     <script type='module' src="./src/js/main.js"></script>
     <script type='module' src="./src/js/_switchThemes.js"></script>

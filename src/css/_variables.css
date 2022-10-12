@@ -1,0 +1,9 @@
+:root {
+	--primary-color: rgb(19, 10, 10);
+	--element-color: rgb(65, 58, 58);
+	--text-color: rgb(241, 236, 236);
+	--highlight-color: rgb(51, 202, 14);
+	--alert-color: rgb(240, 71, 71);
+	--check-color: rgb(59, 253, 11);
+	--edit-color: rgb(4, 216, 254);
+}
