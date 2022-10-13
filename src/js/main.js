@@ -1,4 +1,5 @@
 import { switchPageThemes } from './_switchThemes.js'
+import { todoListFunction } from './_todo.js'
 const navContainer = document.querySelector('.nav__container')
 
 // Switch selected in nav
@@ -11,3 +12,4 @@ const switchNavSelected = e => {
 
 navContainer.addEventListener('click', switchNavSelected)
 switchPageThemes()
+todoListFunction()
