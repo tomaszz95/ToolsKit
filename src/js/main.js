@@ -1,6 +1,7 @@
 import { switchPageThemes } from './_switchThemes.js'
 const navContainer = document.querySelector('.nav__container')
 
+// Switch selected in nav
 const switchNavSelected = e => {
     for (const btn of navContainer.children) {
         btn.classList.remove('nav__container--item-selected')

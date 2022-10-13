@@ -18,12 +18,13 @@ export const switchPageThemes = () => {
 		root.style.setProperty('--primary-color', 'rgb(251, 251, 251)')
 		root.style.setProperty('--element-color', 'rgb(223, 226, 229)')
 		root.style.setProperty('--text-color', 'rgb(19, 10, 10)')
-		root.style.setProperty('--highlight-color', 'rgb(216, 7, 7)')
+		root.style.setProperty('--highlight-color', 'rgb(77, 43, 218)')
 		root.style.setProperty('--alert-color', 'rgb(216, 7, 7)')
-		root.style.setProperty('--check-color', 'rgb(4, 99, 7)')
-		root.style.setProperty('--edit-color', 'rgb(134, 7, 189)')
+		root.style.setProperty('--check-color', 'rgb(13, 141, 17)')
+		root.style.setProperty('--edit-color', 'rgb(8, 50, 250)')
 	}
 
+	// Cookies
 	const switchColorFromCookies = () => {
 		if (theme === 'dark') {
 			switchColorToDark()

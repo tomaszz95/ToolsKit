@@ -31,6 +31,7 @@ body {
 	position: relative;
 	height: 100vh;
 	font-family: 'Montserrat', sans-serif;
+	background-color: var(--primary-color);
 }
 
 /* HEADER */
@@ -159,9 +160,6 @@ body {
 	height: 75%;
 	background-color: var(--primary-color);
 }
-
-
-
 
 /* QUERIES */
 

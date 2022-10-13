@@ -62,17 +62,16 @@
         <section class="todo">
             <h2 class="app__title">Todo List</h2>
             <div class="app__line"></div>
-            <div class="todo__info">
-                <h3 class="todo__info--title">Lista zadań:</h3>
-                <p class="todo__info--alert">Brak zadań na liście.</p>
-            </div>
+            <p class="todo__info--error">No tasks on the list...</p>
             <ul class="todo__container">
                 <li class="todo__item">
                     <p class="todo__item-task">Umyć naczynia</p>
                     <div class='todo__item-tools'>
-                        <button class='todo__item-tools--check' aria-label="Change to done task"><i class=" fa-solid fa-check"></i></button>
+                        <button class='todo__item-tools--check' aria-label="Change to finished task"><i
+                                class=" fa-solid fa-check"></i></button>
                         <button class="todo__item-tools--edit" aria-label="Edit task">EDIT</button>
-                        <button class='todo__item-tools--delete' aria-label="Delete task"><i class="fa-solid fa-x"></i></button>
+                        <button class='todo__item-tools--delete' aria-label="Delete task"><i
+                                class="fa-solid fa-x"></i></button>
                     </div>
                 </li>
                 <li class="todo__item">
@@ -92,6 +91,27 @@
                     </div>
                 </li>
             </ul>
+            <div class="todo__task">
+                <label for="task" class='todo__task--label'>Add task to the list</label>
+                <p class="todo__task--error">This field cannot be empty!</p>
+                <div class="todo__task--box">
+                    <input type="text" id='task' placeholder='Enter the content of the task...'
+                        class='todo__task--input'>
+                    <button class='todo__task--btn' aria-label="Add new task">Add</button>
+                </div>
+            </div>
+            <div class="todo__modal">
+                <div class="todo__modal--shadow"></div>
+                <div class="todo__modal--container">
+                    <label for="task" class='todo__modal--label'>Edit your task</label>
+                    <p class="todo__modal--error">This field cannot be empty!</p>
+                    <input type="text" id='task' class='todo__modal--input'>
+                    <div class="todo__modal--box">
+                        <button class='todo__modal--btn-edit' aria-label="Edit task">Edit</button>
+                        <button class='todo__modal--btn-cancel' aria-label="Cancel changes">Cancel</button>
+                    </div>
+                </div>
+            </div>
         </section>
 
     </main>
