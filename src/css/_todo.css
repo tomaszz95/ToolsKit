@@ -36,6 +36,10 @@
 	font-weight: bold;
 }
 
+.todo__item-tools {
+	min-width: 130px;
+}
+
 .todo-checked {
 	font-style: italic;
 	text-decoration: line-through;
@@ -52,6 +56,10 @@
 	border-radius: 35%;
 	cursor: pointer;
 	font-size: 1.6em;
+}
+.todo__item-tools--check i,
+.todo__item-tools--delete i {
+	pointer-events: none;
 }
 
 .todo__item-tools--check:hover,
@@ -176,7 +184,7 @@
 }
 
 .todo__modal.modal-active > .todo__modal--shadow {
-	animation: 2s shadowActive forwards;
+	animation: 1.4s shadowActive forwards;
 }
 
 .todo__modal--container {
