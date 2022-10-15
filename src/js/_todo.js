@@ -9,21 +9,24 @@ export const todoListFunction = () => {
 	const todoModalEditInput = document.querySelector('.todo__modal--input')
 	const todoModalEditBtn = document.querySelector('.todo__modal--btn-edit')
 	const todoModalCancelBtn = document.querySelector('.todo__modal--btn-cancel')
-	let id = 0
 	let editedTask = ''
+	let taskName
+	let taskNamesForCookies = []
 
 	const checkIfTodoListEmpty = () => {
-		todoContainer.children.length == 0
-			? (errorEmptyTodo.style.display = 'block')
-			: (errorEmptyTodo.style.display = 'none')
+		if (todoContainer.children.length == 0) {
+			errorEmptyTodo.style.display = 'block'
+			errorEmptyTodo.textContent = 'No tasks on the list...'
+		} else {
+			errorEmptyTodo.style.display = 'none'
+		}
 	}
 
 	const createNewTask = () => {
 		const task = document.createElement('li')
 		task.classList.add('todo__item')
-		task.dataset.id = id
 
-		const taskName = document.createElement('p')
+		taskName = document.createElement('p')
 		taskName.classList.add('todo__item-task')
 		taskName.textContent = addTaskInput.value.trim()
 
@@ -57,14 +60,26 @@ export const todoListFunction = () => {
 		task.append(taskName, taskTools)
 		todoContainer.append(task)
 
-		id++
-
 		checkIfTodoListEmpty()
+	}
+
+	const addCookiesTasks = () => {
+		if (localStorage.getItem('tasks') == null) {
+			return
+		} else {
+			taskNamesForCookies = localStorage.getItem('tasks').split(',')
+			taskNamesForCookies.forEach(task => {
+				createNewTask()
+				taskName.textContent = task
+			})
+		}
 	}
 
 	const addNewTask = () => {
 		if (addTaskInput.value.trim().length != 0) {
 			createNewTask()
+			taskNamesForCookies.push(taskName.textContent)
+			localStorage.setItem('tasks', taskNamesForCookies)
 			errorEmptyAddInput.style.display = 'none'
 			addTaskInput.value = ''
 		} else {
@@ -80,19 +95,27 @@ export const todoListFunction = () => {
 		} else if (e.target.classList.contains('todo__item-tools--edit')) {
 			openTodoModal(e)
 		} else if (e.target.classList.contains('todo__item-tools--delete')) {
-			console.log('delete')
+			deleteTask(e)
 		}
 	}
 
 	const checkDoneTask = e => {
 		const doneTaskName = e.target.closest('div').previousElementSibling
+		doneTaskName.classList.contains('todo-checked') ? (errorEmptyTodo.style.display = 'none') : false
 		doneTaskName.classList.toggle('todo-checked')
 	}
 
 	const openTodoModal = e => {
-		todoModal.classList.add('modal-active')
-		editedTask = e.target.closest('div').previousElementSibling
-		todoModalEditInput.value = editedTask.textContent
+		const doneTaskName = e.target.closest('div').previousElementSibling
+		if (doneTaskName.classList.contains('todo-checked')) {
+			errorEmptyTodo.textContent = 'The task cannot be finished to be edited!'
+			errorEmptyTodo.style.display = 'block'
+		} else {
+			todoModal.classList.add('modal-active')
+			editedTask = e.target.closest('div').previousElementSibling
+			todoModalEditInput.value = editedTask.textContent
+			errorEmptyTodo.style.display = 'none'
+		}
 	}
 
 	const editAddedTask = () => {
@@ -110,15 +133,41 @@ export const todoListFunction = () => {
 		todoModal.classList.remove('modal-active')
 	}
 
+	const deleteTask = e => {
+		const taskToDelete = e.target.closest('li')
+		const taskNameToDelete = taskToDelete.firstChild.textContent
+		const indexOfDeletedElement = taskNamesForCookies.indexOf(taskNameToDelete)
+		taskNamesForCookies.splice(indexOfDeletedElement, 1)
+		localStorage.setItem('tasks', taskNamesForCookies)
+		if (taskNamesForCookies.length == 0) {
+			localStorage.removeItem('tasks')
+		}
+		
+		todoContainer.removeChild(taskToDelete)
+		checkIfTodoListEmpty()
+	}
+
 	const addTaskByEnter = e => {
 		if (e.keyCode === 13) {
 			addNewTask()
 		}
 	}
 
+	const modalOptionsByKeys = e => {
+		if (todoModal.classList.contains('modal-active')) {
+			if (e.keyCode === 13) {
+				editAddedTask()
+			} else if (e.keyCode === 27) {
+				closeModal()
+			}
+		}
+	}
+
+	addTaskBtn.addEventListener('click', addNewTask)
+	addTaskInput.addEventListener('keyup', addTaskByEnter)
 	todoModalEditBtn.addEventListener('click', editAddedTask)
 	todoModalCancelBtn.addEventListener('click', closeModal)
 	todoContainer.addEventListener('click', manageToolsOptions)
-	addTaskInput.addEventListener('keyup', addTaskByEnter)
-	addTaskBtn.addEventListener('click', addNewTask)
+	document.addEventListener('keyup', modalOptionsByKeys)
+	document.addEventListener('DOMContentLoaded', addCookiesTasks)
 }
