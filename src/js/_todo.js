@@ -10,6 +10,7 @@ export const todoListFunction = () => {
 	const todoModalEditBtn = document.querySelector('.todo__modal--btn-edit')
 	const todoModalCancelBtn = document.querySelector('.todo__modal--btn-cancel')
 	let editedTask = ''
+	let taskIndex = 1
 	let taskName
 	let taskNamesForCookies = []
 
@@ -29,6 +30,7 @@ export const todoListFunction = () => {
 		taskName = document.createElement('p')
 		taskName.classList.add('todo__item-task')
 		taskName.textContent = addTaskInput.value.trim()
+		taskName.dataset.todo = taskIndex
 
 		const taskTools = document.createElement('div')
 		taskTools.classList.add('todo__item-tools')
@@ -60,6 +62,7 @@ export const todoListFunction = () => {
 		task.append(taskName, taskTools)
 		todoContainer.append(task)
 
+		taskIndex += 2
 		checkIfTodoListEmpty()
 	}
 
@@ -68,10 +71,18 @@ export const todoListFunction = () => {
 			return
 		} else {
 			taskNamesForCookies = localStorage.getItem('tasks').split(',')
-			taskNamesForCookies.forEach(task => {
+			for (let i = 0; i < taskNamesForCookies.length; i++) {
 				createNewTask()
-				taskName.textContent = task
-			})
+				taskName.textContent = taskNamesForCookies[i]
+				i += 1
+
+				const elementID = taskNamesForCookies.indexOf(taskName.textContent) + 1
+				const elementDataSet = taskName.dataset.todo
+
+				if (taskNamesForCookies[elementID] == 'true') {
+					document.querySelector(`p[data-todo='${elementDataSet}`).classList.add('todo-checked')
+				} 
+			}
 		}
 	}
 
@@ -79,6 +90,7 @@ export const todoListFunction = () => {
 		if (addTaskInput.value.trim().length != 0) {
 			createNewTask()
 			taskNamesForCookies.push(taskName.textContent)
+			taskNamesForCookies.push('false')
 			localStorage.setItem('tasks', taskNamesForCookies)
 			errorEmptyAddInput.style.display = 'none'
 			addTaskInput.value = ''
@@ -86,10 +98,10 @@ export const todoListFunction = () => {
 			errorEmptyAddInput.style.display = 'block'
 		}
 	}
-
+	
 	const manageToolsOptions = e => {
 		if (todoContainer.children.length == 0) return
-
+		
 		if (e.target.classList.contains('todo__item-tools--check')) {
 			checkDoneTask(e)
 		} else if (e.target.classList.contains('todo__item-tools--edit')) {
@@ -98,13 +110,20 @@ export const todoListFunction = () => {
 			deleteTask(e)
 		}
 	}
-
+	
 	const checkDoneTask = e => {
 		const doneTaskName = e.target.closest('div').previousElementSibling
-		doneTaskName.classList.contains('todo-checked') ? (errorEmptyTodo.style.display = 'none') : false
+		const indexOfClickedTask = taskNamesForCookies.indexOf(doneTaskName.textContent) + 1
 		doneTaskName.classList.toggle('todo-checked')
+		if (doneTaskName.classList.contains('todo-checked')) {
+			errorEmptyTodo.style.display = 'none'
+			taskNamesForCookies.splice(indexOfClickedTask, 1, 'true')
+		} else {
+			taskNamesForCookies.splice(indexOfClickedTask, 1, 'false')
+		}
+		localStorage.setItem('tasks', taskNamesForCookies)
 	}
-
+	
 	const openTodoModal = e => {
 		const doneTaskName = e.target.closest('div').previousElementSibling
 		if (doneTaskName.classList.contains('todo-checked')) {
@@ -122,7 +141,10 @@ export const todoListFunction = () => {
 		if (todoModalEditInput.value.length == 0) {
 			errorEmptyModalInput.style.display = 'block'
 		} else {
+			const elementID = taskNamesForCookies.indexOf(editedTask.textContent)
+			taskNamesForCookies.splice(elementID, 1, todoModalEditInput.value)
 			editedTask.textContent = todoModalEditInput.value
+			localStorage.setItem('tasks', taskNamesForCookies)
 			closeModal()
 		}
 	}
@@ -137,12 +159,12 @@ export const todoListFunction = () => {
 		const taskToDelete = e.target.closest('li')
 		const taskNameToDelete = taskToDelete.firstChild.textContent
 		const indexOfDeletedElement = taskNamesForCookies.indexOf(taskNameToDelete)
-		taskNamesForCookies.splice(indexOfDeletedElement, 1)
+		taskNamesForCookies.splice(indexOfDeletedElement, 2)
 		localStorage.setItem('tasks', taskNamesForCookies)
 		if (taskNamesForCookies.length == 0) {
 			localStorage.removeItem('tasks')
 		}
-		
+
 		todoContainer.removeChild(taskToDelete)
 		checkIfTodoListEmpty()
 	}
