@@ -30,6 +30,7 @@ html {
 }
 
 body {
+	min-height: 100vh;
 	position: relative;
 	font-family: 'Montserrat', sans-serif;
 	background-color: var(--primary-color);
@@ -157,8 +158,114 @@ body {
 }
 
 .main {
+	display: flex;
 	width: 100%;
 	background-color: var(--primary-color);
+}
+
+.active-app {
+	opacity: 1;
+	transform: translateX(0);
+	animation: activeSection 1s forwards cubic-bezier(0.222, 0.72, 0.555, 1.175);
+}
+
+.hidden-app {
+	opacity: 0;
+	display: none;
+	transform: translateY(15%);
+}
+
+.cookies {
+	position: fixed;
+	top: calc(100vh - 230px);
+	left: 0;
+	right: 0;
+	height: 230px;
+	display: none;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	background-color: var(--element-color);
+	color: var(--text-color);
+	z-index: 10;
+	padding: 2em;
+}
+
+.cookies.hide {
+	animation: hideCookies 2s forwards;
+}
+
+.cookies__icon {
+	position: absolute;
+	top: -35px;
+	right: 10%;
+	font-size: 6em;
+	color: var(--highlight-color);
+}
+
+.cookies__title {
+	font-size: 2em;
+	font-weight: bold;
+}
+
+.cookies__info {
+	margin: 1em 0;
+	font-size: 1.2em;
+}
+
+.cookies__btns {
+	width: 100%;
+	max-width: 700px;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+.cookies__btns button {
+	margin-top: 2em;
+	width: 45%;
+	padding: 0.6em 1em;
+	background-color: transparent;
+	border: 3px solid var(--highlight-color);
+	color: var(--text-color);
+	font-weight: bold;
+	font-size: 1.4em;
+	letter-spacing: 1px;
+	border-radius: 10px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+.cookies__btns button:hover {
+	background-color: var(--element-color);
+}
+
+/* ANIMATIONS */
+
+@keyframes activeSection {
+	from {
+		display: none;
+		opacity: 0;
+		transform: translateY(15%);
+	}
+	to {
+		display: flex;
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes hideCookies {
+	from {
+		display: flex;
+		opacity: 1;
+		transform: translateX(0);
+	}
+	to {
+		display: none;
+		opacity: 0;
+		transform: translateY(100%);
+	}
 }
 
 /* QUERIES */
@@ -224,7 +331,7 @@ body {
 	.note__box--label-title,
 	.note__box--label-content {
 		margin: 1em 0;
-		font-size: 1.7em;
+		font-size: 1.6em;
 	}
 
 	.note__box--title--error,

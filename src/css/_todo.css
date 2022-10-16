@@ -1,4 +1,5 @@
 .todo {
+	width: 100vw;
 	position: relative;
 	display: flex;
 	flex-direction: column;

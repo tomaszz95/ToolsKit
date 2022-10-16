@@ -33,24 +33,24 @@
     <nav class="nav">
         <h1 class="nav__title">Choose your app!</h1>
         <div class="nav__container">
-            <button class="nav__container--item item-todo nav__container--item-selected"
+            <button class="nav__container--item" id='todo'
                 aria-label="Change to Todo App">
                 <i class="fa-solid fa-list nav__container--item-icon"></i>
                 <p class="nav__container--item-text">Todo List</p>
             </button>
-            <button class="nav__container--item item-notes" aria-label="Change to Notes App">
+            <button class="nav__container--item" aria-label="Change to Notes App" id='notes'>
                 <i class="fa-solid fa-note-sticky nav__container--item-icon"></i>
                 <p class="nav__container--item-text">Notes App</p>
             </button>
-            <button class="nav__container--item item-wallet" aria-label="Change to Wallet App">
+            <button class="nav__container--item" aria-label="Change to Expenses App" id='expenses'>
                 <i class="fa-solid fa-money-bill-wave nav__container--item-icon"></i>
                 <p class="nav__container--item-text">Expenses App</p>
             </button>
-            <button class="nav__container--item item-calc" aria-label="Change to Calculator App">
+            <button class="nav__container--item" aria-label="Change to Calculator App" id='calculator'>
                 <i class="fa-solid fa-calculator nav__container--item-icon"></i>
                 <p class="nav__container--item-text">Calculator</p>
             </button>
-            <button class="nav__container--item item-weather" aria-label="Change to Weather App">
+            <button class="nav__container--item" aria-label="Change to Weather App" id='weather'>
                 <i class="fa-solid fa-cloud-sun nav__container--item-icon"></i>
                 <p class="nav__container--item-text">Weather App</p>
             </button>
@@ -59,7 +59,7 @@
 
     <main class="main">
 
-        <section class="todo">
+        <section class="todo hidden-app">
             <h2 class="app__title">Todo List</h2>
             <div class="app__line"></div>
             <p class="todo__info--error">No tasks on the list...</p>
@@ -87,35 +87,67 @@
             </div>
         </section>
 
-        <section class="notes">
+        <section class="notes hidden-app">
             <h2 class="app__title">Note App</h2>
             <div class="app__line"></div>
+            <p class="note__list--error">No notes on the list...</p>
             <div class="note__container">
                 <ul class="note__list">
+                    <!-- <div class="note__body">
+                        <h3 class="note__body--title">Pamiętniczek</h3>
+                        <p class="note__body--content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab
+                            mollitia unde cumque quaerat aut dolorem incidunt totam illo quod odit! Voluptate quo
+                            tempore aperiam! Porro quo accusamus eum ad. Omnis.</p>
+                        <div class="note__body--tools">
+                            <a class="note__body--edit" aria-label="Edit note" href='#note-content'>Edit note</a>
+                            <button class="note__body--delete" aria-label="Delete note">Delete note</button>
+                        </div>
+                    </div>
+                    <div class="note__body">
+                        <h3 class="note__body--title">Pamiętniczek asddddddddssssssss sssssssssssssssss ssssssssssssssss
+                        </h3>
+                        <p class="note__body--content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab
+                            mollitia unde cumque quaerat aut dolorem incidunt totam illo quod odit! Voluptate quo
+                            tempore aperiam! Porro quo accusamus eum ad. Omnis.Lorem ipsum dolor sit amet consectetur
+                            adipisicing elit. Ab mollitia unde cumque quaerat aut dolorem incidunt totam illo quod odit!
+                            Voluptate quo tempore aperiam! Porro quo accusamus eum ad.Omnis.Lorem ipsum dolor sit amet
+                            consectetur Omnis.Lorem ipsum dolor sit amet consectetur Omnis.Lorem ipsum dolor sit amet
+                            consectetur Omnis.Lorem ipsum dolor sit amet consectetur Omnis.Lorem ipsum dolor sit amet
+                            consectetur Omnis.Lorem ipsum dolor sit amet consectetur Omnis.Lorem ipsum dolor sit amet
+                            consectetur Omnis.Lorem ipsum dolor sit amet consectetur Omnis.Lorem ipsum dolor sit amet
+                            consectetur Omnis.Lorem ipsum dolor sit amet consectetur Omnis.Lorem ipsum dolor sit amet
+                            consectetur adipisicing elit. Ab mollitia unde cumque quaerat aut dolorem incidunt totam
+                            illo quod odit! Vdddddddddddddddddd d doOmnis.Lorem ipsum dolor sit amet consectetur
+                            Omnis.Lorem ipsum dolor sit amet consectetur Omnis.Lorem ipsum dolor sit amet consectetur
+                            Omnis.Lorem ipsum dolor sit amet consectetur Omnis.Lorem ipsum dolor sit amet consectetur
+                            Omnis.Lorem ipsum dolor sit amet consectetur Omnis.Lorem ipsum dolor sit amet consectetur
+                            Omnis.Lorem ipsum dolor sit amet consectetur Omnis.Lorem ipsum dolor sit amet consectetur
+                            Omnis.Lorem ipsum dolor sit amet consectetur Omnis.Lorem ipsum dolor sit amet consectetur
+                            Omnis.Lorem ipsum dolor sit amet consectetur Omnis.Lorem ipsum dolor sit amet consectetur
+                            Omnis.Lorem ipsum dolor sit amet consectetur Omnis.Lorem ipsum dolor sit amet consectetur
+                            Omnis.Lorem ipsum dolor sit amet consectetur Omnis.Lorem ipsum dolor sit amet consectetur
+                            Omnis.Lorem ipsum dolor sit amet consectetur Omnis.Lorem ipsum dolor sit amet consectetur
+                            Omnis.Lorem ipsum dolor sit amet consectetur Omnis.Lorem ipsum dolor sit amet consectetur
+                            Omnis.Lorem ipsum dolor sit amet consectetur Omnis.Lorem ipsum dolor sit amet consectetur
+                            Omnis.Lorem ipsum dolor sit amet consectetur Omnis.Lorem ipsum dolor sit amet consectetur.
+                        </p>
+                        <div class="note__body--tools">
+                            <a class="note__body--edit" aria-label="Edit note" href='#note-content'>Edit note</a>
+                            <button class="note__body--delete" aria-label="Delete note">Delete note</button>
+                        </div>
+                    </div>
                     <div class="note__body">
                         <h3 class="note__body--title">Pamiętniczek</h3>
-                        <p class="note__body--content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab mollitia unde cumque quaerat aut dolorem incidunt totam illo quod odit! Voluptate quo tempore aperiam! Porro quo accusamus eum ad. Omnis.</p>
+                        <p class="note__body--content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab
+                            mollitia unde cumque quaerat aut dolorem incidunt totam illo quod odit! Voluptate quo
+                            tempore aperiam! Porro quo accusamus eum ad. Omnis.Lorem ipsum dolor sit amet consectetur
+                            adipisicing elit. Ab mollitia unde cumque quaerat aut dolorem incidunt totam illo quod odit!
+                            Voluptate quo tempore aperiam! Porro quo accusamus eum ad. Omnis.</p>
                         <div class="note__body--tools">
                             <a class="note__body--edit" aria-label="Edit note" href='#note-content'>Edit note</a>
                             <button class="note__body--delete" aria-label="Delete note">Delete note</button>
                         </div>
-                    </div>
-                    <div class="note__body">
-                        <h3 class="note__body--title">Pamiętniczek asddddddddssssssss sssssssssssssssss ssssssssssssssss</h3>
-                        <p class="note__body--content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab mollitia unde cumque quaerat aut dolorem incidunt totam illo quod odit! Voluptate quo tempore aperiam! Porro quo accusamus eum ad. Omnis.Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab mollitia unde cumque quaerat aut dolorem incidunt totam illo quod odit! Voluptate quo tempore aperiam! Porro quo accusamus eum ad.Omnis.Lorem ipsum dolor sit amet consectetur Omnis.Lorem ipsum dolor sit amet consectetur Omnis.Lorem ipsum dolor sit amet consectetur Omnis.Lorem ipsum dolor sit amet consectetur Omnis.Lorem ipsum dolor sit amet consectetur Omnis.Lorem ipsum dolor sit amet consectetur Omnis.Lorem ipsum dolor sit amet consectetur Omnis.Lorem ipsum dolor sit amet consectetur Omnis.Lorem ipsum dolor sit amet consectetur Omnis.Lorem ipsum dolor sit amet consectetur  Omnis.Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab mollitia unde cumque quaerat aut dolorem incidunt totam illo quod odit! Vdddddddddddddddddd d doOmnis.Lorem ipsum dolor sit amet consectetur Omnis.Lorem ipsum dolor sit amet consectetur Omnis.Lorem ipsum dolor sit amet consectetur Omnis.Lorem ipsum dolor sit amet consectetur Omnis.Lorem ipsum dolor sit amet consectetur Omnis.Lorem ipsum dolor sit amet consectetur Omnis.Lorem ipsum dolor sit amet consectetur Omnis.Lorem ipsum dolor sit amet consectetur Omnis.Lorem ipsum dolor sit amet consectetur Omnis.Lorem ipsum dolor sit amet consectetur Omnis.Lorem ipsum dolor sit amet consectetur Omnis.Lorem ipsum dolor sit amet consectetur Omnis.Lorem ipsum dolor sit amet consectetur Omnis.Lorem ipsum dolor sit amet consectetur Omnis.Lorem ipsum dolor sit amet consectetur Omnis.Lorem ipsum dolor sit amet consectetur Omnis.Lorem ipsum dolor sit amet consectetur Omnis.Lorem ipsum dolor sit amet consectetur Omnis.Lorem ipsum dolor sit amet consectetur Omnis.Lorem ipsum dolor sit amet consectetur Omnis.Lorem ipsum dolor sit amet consectetur Omnis.Lorem ipsum dolor sit amet consectetur Omnis.Lorem ipsum dolor sit amet consectetur Omnis.Lorem ipsum dolor sit amet consectetur Omnis.Lorem ipsum dolor sit amet consectetur.</p>
-                        <div class="note__body--tools">
-                            <a class="note__body--edit" aria-label="Edit note" href='#note-content'>Edit note</a>
-                            <button class="note__body--delete" aria-label="Delete note">Delete note</button>
-                        </div>
-                    </div>
-                    <div class="note__body">
-                        <h3 class="note__body--title">Pamiętniczek</h3>
-                        <p class="note__body--content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab mollitia unde cumque quaerat aut dolorem incidunt totam illo quod odit! Voluptate quo tempore aperiam! Porro quo accusamus eum ad. Omnis.Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab mollitia unde cumque quaerat aut dolorem incidunt totam illo quod odit! Voluptate quo tempore aperiam! Porro quo accusamus eum ad. Omnis.</p>
-                        <div class="note__body--tools">
-                            <a class="note__body--edit" aria-label="Edit note" href='#note-content'>Edit note</a>
-                            <button class="note__body--delete" aria-label="Delete note">Delete note</button>
-                        </div>
-                    </div>
+                    </div> -->
                 </ul>
                 <div class="note__box">
                     <h2 class="note__box--heading">Add note</h2>
@@ -126,18 +158,40 @@
                     <textarea name="note-content-area" id="note-content" class='note__box--textarea-content'></textarea>
                     <p class="note__box--content--error">This field cannot be empty!</p>
                     <div class="note__box--buttons">
-                        <button class='note__box--buttons-add' aria-label="Add new note">Add new note</button>
-                        <button class='note__box--buttons-clear' aria-label="Clear inputs">Clear inputs</button>
-                        <button class='note__box--buttons-deleteall' aria-label="Delete all notes">Delete all notes</button>
+                        <button class='note__box--buttons-add active' aria-label="Add new note">Add new note</button>
+                        <button class='note__box--buttons-clear active' aria-label="Clear inputs">Clear inputs</button>
+                        <button class='note__box--buttons-deleteall active' aria-label="Delete all notes">Delete all notes</button>
+                        <button class='note__box--buttons-edit' aria-label="Edit note">Edit note</button>
+                        <button class='note__box--buttons-cancel' aria-label="Cancel edition">Cancel</button>
                     </div>
                 </div>
             </div>
         </section>
+
+        <section class="expenses hidden-app"></section>
+        <section class="calculator hidden-app"></section>
+        <section class="weather hidden-app"></section>
+
     </main>
+    <div class="cookies">
+        <i class="fa-solid fa-cookie-bite cookies__icon"></i>
+        <p class="cookies__title">This website uses cookies!</p>
+        <p class='cookies__info'>
+            We use cookies to be able to save information entered by the user, such as tasks in the todo list, notes or
+            the background color of the page. Other informations are not saved.</p>
+        <div class="cookies__btns">
+            <button class='cookies__btns--agree'>Agree</button>
+            <button class='cookies__btns--disagree'>Disagree</button>
+        </div>
+    </div>
 
     <script type='module' src="./src/js/main.js"></script>
     <script type='module' src="./src/js/_switchThemes.js"></script>
     <script type='module' src="./src/js/_todo.js"></script>
+    <script type='module' src="./src/js/_notes.js"></script>
+    <script type='module' src="./src/js/_expenses.js"></script>
+    <script type='module' src="./src/js/_calculator.js"></script>
+    <script type='module' src="./src/js/_weather.js"></script>
 </body>
 
 </html>
