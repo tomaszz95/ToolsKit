@@ -1,0 +1,156 @@
+.notes, .note__container, .note__list, .note__box--buttons  {
+    display: flex;
+    align-items: center;
+	flex-direction: column;
+}
+
+.notes {
+    overflow: hidden;
+}
+
+.note__container {
+	width: 100%;
+	max-width: 1200px;
+}
+
+.note__list {
+    margin-top: 1em;
+    padding: 1.5em;
+}
+
+.note__body {
+    max-width: 500px;
+    margin: 1.5em 1em;
+	padding: 1em 2em;
+	border-radius: 10px;
+	background-color: var(--element-color);
+    border: 1px solid var(--highlight-color);
+}
+
+.note__body--title {
+    width: 100%;
+    margin-top: 1em;
+    font-size: 1.8em;
+    font-weight: bold;
+    text-align: center;
+    color: var(--highlight-color);
+    letter-spacing: 1px;
+}
+
+.note__body--content {
+    margin: 1.5em 0;
+    padding: 0 1em;
+    font-size: 1.4em;
+    text-align: left;
+    color: var(--text-color);
+}
+
+.note__body--tools {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 1em;
+}
+
+.note__body--edit, .note__body--delete {
+    width: 45%;
+	padding: 0.5em 1em;
+	background-color: transparent;
+	border: 1px solid var(--highlight-color);
+	color: var(--text-color);
+	font-weight: bold;
+	font-size: 1.5em;
+	border-radius: 20px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+.note__body--edit {
+    text-align: center;
+    text-decoration: none;
+}
+
+.note__body--edit:hover, .note__body--delete:hover, .note__box--buttons button:hover {
+	background-color: var(--primary-color);
+}
+
+.note__box {
+    display: flex;
+    flex-direction: column;
+    padding: 2.5em;
+    width: 100%;
+    margin-top: 5em;
+	background-color: var(--element-color);
+	color: var(--text-color);
+    text-align: center;
+}
+
+.note__box--heading {
+    font-size: 2.2em;
+}
+
+.note__box--label-title, .note__box--label-content {
+    margin: 1em 0 0.6em;
+    font-size: 1.6em;
+    font-style: italic;
+}
+
+.note__box--label-content {
+    margin-top: 2em;
+}
+
+.note__box--title--error, .note__box--content--error {
+    margin-top: 0.6em;
+    font-size: 1.3em;
+	font-weight: bold;
+	color: var(--alert-color);
+}
+
+.note__box--input-title {
+    width: 100%;
+	border-radius: 5px;
+	padding: 0.6em 2em;
+	border: 2px solid var(--text-color);
+}
+
+.note__box--textarea-content {
+    max-width: 100%;
+    min-width: 100%;
+    min-height: 80px;
+    max-height: 300px;
+    border-radius: 5px;
+}
+
+.note__box--input-title.error,
+.note__box--textarea-content.error {
+	border: 2px solid var(--alert-color);
+}
+
+.note__box--buttons {
+    margin-top: 2em;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.note__box--buttons-add, .note__box--buttons-clear, .note__box--buttons-deleteall {
+    width: 45%;
+    max-width: 300px;
+	padding: 0.5em 1em;
+	background-color: transparent;
+	border: 1px solid var(--highlight-color);
+	color: var(--text-color);
+	font-weight: bold;
+	font-size: 1.5em;
+	border-radius: 20px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+.note__box--buttons-deleteall {
+    margin-top: 1em;
+    width: 95%;
+    max-width: 600px;
+}
+
+
