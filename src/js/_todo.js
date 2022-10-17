@@ -9,6 +9,7 @@ export const todoListFunction = () => {
 	const todoModalEditInput = document.querySelector('.todo__modal--input')
 	const todoModalEditBtn = document.querySelector('.todo__modal--btn-edit')
 	const todoModalCancelBtn = document.querySelector('.todo__modal--btn-cancel')
+	const navContainer = document.querySelector('.nav__container')
 	let editedTask = ''
 	let taskName
 	let taskNamesForCookies = []
@@ -73,7 +74,7 @@ export const todoListFunction = () => {
 			return
 		} else {
 			taskNamesForCookies = localStorage.getItem('tasks').split(',')
-			
+
 			for (let i = 0; i < taskNamesForCookies.length; i++) {
 				createNewTask()
 				taskName.textContent = taskNamesForCookies[i]
@@ -84,7 +85,7 @@ export const todoListFunction = () => {
 
 				if (taskNamesForCookies[elementID] == 'true') {
 					document.querySelector(`p[data-todo='${elementDataSet}`).classList.add('todo-checked')
-				} 
+				}
 			}
 		}
 	}
@@ -102,11 +103,11 @@ export const todoListFunction = () => {
 			errorEmptyAddInput.style.display = 'block'
 		}
 	}
-	
+
 	// MANAGE TASKS OPTIONS
 	const manageToolsOptions = e => {
 		if (todoContainer.children.length == 0) return
-		
+
 		if (e.target.classList.contains('todo__item-tools--check')) {
 			checkDoneTask(e)
 		} else if (e.target.classList.contains('todo__item-tools--edit')) {
@@ -115,7 +116,7 @@ export const todoListFunction = () => {
 			deleteTask(e)
 		}
 	}
-	
+
 	// ADD CHECKED ON TASK, SPLICE ACTUAL CHECKED STATE IN ARRAY AND PUSH TO LOCAL STORAGE
 	const checkDoneTask = e => {
 		const doneTaskName = e.target.closest('div').previousElementSibling
@@ -131,11 +132,11 @@ export const todoListFunction = () => {
 
 		localStorage.setItem('tasks', taskNamesForCookies)
 	}
-	
+
 	// OPEN MODAL AND BLOCK USING EDIT WHEN TASK IS CHECKED
 	const openTodoModal = e => {
 		const doneTaskName = e.target.closest('div').previousElementSibling
-		
+
 		if (doneTaskName.classList.contains('todo-checked')) {
 			errorEmptyTodo.textContent = 'The task cannot be finished to be edited!'
 			errorEmptyTodo.style.display = 'block'
@@ -171,7 +172,7 @@ export const todoListFunction = () => {
 		const taskToDelete = e.target.closest('li')
 		const taskNameToDelete = taskToDelete.firstChild.textContent
 		const indexOfDeletedElement = taskNamesForCookies.indexOf(taskNameToDelete)
-		
+
 		taskNamesForCookies.splice(indexOfDeletedElement, 2)
 		localStorage.setItem('tasks', taskNamesForCookies)
 
@@ -183,7 +184,7 @@ export const todoListFunction = () => {
 		checkIfTodoListEmpty()
 	}
 
-	// USING ENTER AND ESC 
+	// USING ENTER AND ESC
 	const addTaskByEnter = e => {
 		if (e.keyCode === 13) {
 			addNewTask()
@@ -200,11 +201,22 @@ export const todoListFunction = () => {
 		}
 	}
 
+	// CLOSING MODAL WHEN CLICK OTHER APP
+	const closeEditTodoWhenClickedOtherApp = e => {
+		if (
+			e.target.classList.contains('nav__container--item') ||
+			e.target.parentElement.classList.contains('nav__container--item')
+		) {
+			closeModal()
+		}
+	}
+
 	addTaskBtn.addEventListener('click', addNewTask)
 	addTaskInput.addEventListener('keyup', addTaskByEnter)
 	todoModalEditBtn.addEventListener('click', editAddedTask)
 	todoModalCancelBtn.addEventListener('click', closeModal)
 	todoContainer.addEventListener('click', manageToolsOptions)
+	navContainer.addEventListener('click', closeEditTodoWhenClickedOtherApp)
 	document.addEventListener('keyup', modalOptionsByKeys)
 	document.addEventListener('DOMContentLoaded', addCookiesTasks)
 }

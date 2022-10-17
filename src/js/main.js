@@ -9,7 +9,7 @@ const cookiesBtnsContainer = document.querySelector('.cookies__btns')
 let cookies = localStorage.getItem('cookies')
 let section = localStorage.getItem('section')
 
-// Cookies info enter
+// Show cookies banner
 const showCookiesBanner = () => {
 	if (cookies === 'agree') {
 		document.querySelector('.cookies').style.display = 'none'
@@ -36,22 +36,39 @@ const switchWhenEnterSite = () => {
     for (const btn of navContainer.children) {
         btn.classList.remove('nav__container--item-selected')
 	}
+
     let lastActiveSectionIcon = document.querySelector(`#${section}`)
     let lastActiveSectionBody = document.querySelector(`.${section}`)
   
-    lastActiveSectionIcon.classList.add('nav__container--item-selected')
-    lastActiveSectionBody.classList.add('active-app')
-    lastActiveSectionBody.classList.remove('hidden-app')
+	if (section === null) {
+		document.querySelector('#todo').classList.add('nav__container--item-selected')
+		document.querySelector('.todo').classList.add('active-app')
+		document.querySelector('.todo').classList.remove('hidden-app')
+	} else {
+		lastActiveSectionIcon.classList.add('nav__container--item-selected')
+		lastActiveSectionBody.classList.add('active-app')
+		lastActiveSectionBody.classList.remove('hidden-app')
+	}
 }
 
 // Switch apps when site running
 const switchNavSelected = e => {
     const main = document.querySelector('.main')
     
+	if(e.target.classList.contains('nav__container')) return
+
 	for (const btn of navContainer.children) {
         btn.classList.remove('nav__container--item-selected')
 	}
-	e.target.closest('button').classList.add('nav__container--item-selected')
+
+	if (
+		e.target.classList.contains('nav__container--item') ||
+		e.target.parentElement.classList.contains('nav__container--item')
+	) {
+		e.target.closest('button').classList.add('nav__container--item-selected')
+	} else {
+		return
+	}
     
 	const targetedNavItemId = e.target.closest('button').getAttribute('id')
     
@@ -67,6 +84,7 @@ const switchNavSelected = e => {
 		}
 	}
 }
+
 
 cookiesBtnsContainer.addEventListener('click', cookiesInfo)
 navContainer.addEventListener('click', switchNavSelected)

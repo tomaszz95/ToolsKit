@@ -288,6 +288,7 @@ body {
 		grid-template-columns: 1fr 1fr;
 		gap: 4em 2em;
 		align-items: start;
+		justify-items: center;
 	}
 
 	.note__body {
@@ -300,7 +301,6 @@ body {
 
 	.note__body--title {
 		width: 100%;
-		height: 10%;
 		font-size: 2em;
 	}
 
