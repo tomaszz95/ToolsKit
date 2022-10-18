@@ -7,9 +7,10 @@ export const notesAppFunction = () => {
 	const noteTextAreaContent = document.querySelector('.note__box--textarea-content')
 	const noteTextAreaError = document.querySelector('.note__box--content--error')
 	const noteOptionButtons = document.querySelector('.note__box--buttons')
-	const notesObject = {}
 	const arrayOfOptionButtons = [...noteOptionButtons.children]
+	const navContainer = document.querySelector('.nav__container')
 	let clickedNoteTitle, clickedNoteContent
+	const notesObject = {}
 
 	// CHECK LENGTH OF THE UL LIST
 	const checkIfNoteListEmpty = () => {
@@ -212,7 +213,19 @@ export const notesAppFunction = () => {
 		}
 	}
 
+	// CLEAR ERROR WHEN CLICK OTHER APP
+	const clearErrorsWhenOtherApp = e => {
+		if (
+			e.target.classList.contains('nav__container--item') ||
+			e.target.parentElement.classList.contains('nav__container--item')
+		) {
+			noteInputError.style.display = 'none'
+			noteTextAreaError.style.display = 'none'
+		}
+	}
+
 	document.addEventListener('click', manageNotesButtons)
 	document.addEventListener('DOMContentLoaded', addNotesFromCookies)
+	navContainer.addEventListener('click', clearErrorsWhenOtherApp)
 	checkIfNoteListEmpty()
 }

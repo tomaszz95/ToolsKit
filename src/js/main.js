@@ -95,6 +95,6 @@ switchPageThemes()
 
 todoListFunction()
 notesAppFunction()
-// weatherAppFunction()
 // expensesAppFunction()
+// weatherAppFunction()
 // calculatorFunction()
