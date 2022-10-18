@@ -354,7 +354,9 @@ body {
 
 	.note__box--buttons-add,
 	.note__box--buttons-clear,
-	.note__box--buttons-deleteall {
+	.note__box--buttons-deleteall,
+	.note__box--buttons-edit,
+	.note__box--buttons-cancel {
 		font-size: 1.6em;
 		width: 30%;
 		max-width: 350px;

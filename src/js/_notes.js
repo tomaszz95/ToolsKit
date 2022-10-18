@@ -8,7 +8,10 @@ export const notesAppFunction = () => {
 	const noteTextAreaError = document.querySelector('.note__box--content--error')
 	const noteOptionButtons = document.querySelector('.note__box--buttons')
 	const notesObject = {}
+	const arrayOfOptionButtons = [...noteOptionButtons.children]
+	let clickedNoteTitle, clickedNoteContent
 
+	// CHECK LENGTH OF THE UL LIST
 	const checkIfNoteListEmpty = () => {
 		if (noteList.children.length == 0) {
 			noteListError.style.display = 'block'
@@ -17,6 +20,7 @@ export const notesAppFunction = () => {
 		}
 	}
 
+	// CLEAR INPUTS
 	const clearInputsAndErrors = () => {
 		noteInputTitle.value = ''
 		noteInputError.style.display = 'none'
@@ -56,6 +60,7 @@ export const notesAppFunction = () => {
 		noteList.append(note)
 	}
 
+	// ADD NEW NOTE TO THE LIST AND CHECK FOR ERRORS IN INPUTS
 	const addNewNote = () => {
 		if (noteInputTitle.value == '' && noteTextAreaContent.value == '') {
 			noteInputError.style.display = 'block'
@@ -105,11 +110,86 @@ export const notesAppFunction = () => {
 		}
 	}
 
+	// DELETE NOTE / NOTES
+	const deleteClickedNote = e => {
+		const deleteNoteItem = e.target.closest('li')
+		const deleteNoteTitle = deleteNoteItem.firstChild.textContent
+		noteList.removeChild(deleteNoteItem)
+
+		for (const key in notesObject) {
+			if (key == deleteNoteTitle) {
+				delete notesObject[key]
+				localStorage.setItem('notes', JSON.stringify(notesObject))
+			}
+		}
+
+		checkIfNoteListEmpty()
+
+		if (noteBoxHeading.textContent == 'Edit note') {
+			switchToDefault()
+		}
+	}
+
 	const deleteAllNotes = () => {
 		noteList.textContent = ''
-		clearInputsAndErrors()
 		noteListError.style.display = 'block'
 		localStorage.removeItem('notes')
+	}
+
+	// EDIT NOTE
+	const editNoteInNote = e => {
+		clearInputsAndErrors()
+		clickedNoteTitle = e.target.closest('li').firstChild
+		clickedNoteContent = e.target.closest('div').previousElementSibling
+
+		if (noteBoxHeading.textContent == 'Add note') {
+			noteBoxHeading.textContent = 'Edit note'
+			noteInputTitle.value = clickedNoteTitle.textContent
+			noteTextAreaContent.value = clickedNoteContent.textContent
+			arrayOfOptionButtons.forEach(btn => {
+				btn.classList.toggle('active')
+			})
+		} else if (noteBoxHeading.textContent == 'Edit note' && noteInputTitle.value !== '') {
+			noteInputTitle.value = clickedNoteTitle.textContent
+			noteTextAreaContent.value = clickedNoteContent.textContent
+		}
+	}
+
+	const editNoteBtn = () => {
+		if (noteInputTitle.value == '' && noteTextAreaContent.value == '') {
+			noteInputError.style.display = 'block'
+			noteTextAreaError.style.display = 'block'
+		} else if (noteInputTitle.value !== '' && noteTextAreaContent.value == '') {
+			noteInputError.style.display = 'none'
+			noteTextAreaError.style.display = 'block'
+		} else if (noteInputTitle.value == '' && noteTextAreaContent.value !== '') {
+			noteInputError.style.display = 'block'
+			noteTextAreaError.style.display = 'none'
+		} else if (noteInputTitle.value !== '' && noteTextAreaContent.value !== '') {
+			for (const key in notesObject) {
+				if (notesObject[key].noteName == clickedNoteTitle.textContent) {
+					notesObject[key].noteName = noteInputTitle.value
+					notesObject[key].noteContent = noteTextAreaContent.value
+
+					localStorage.setItem('notes', JSON.stringify(notesObject))
+				}
+			}
+
+			clickedNoteTitle.textContent = noteInputTitle.value
+			clickedNoteContent.textContent = noteTextAreaContent.value
+
+			switchToDefault()
+		}
+	}
+
+	// SWITCH TO DEFAULT BUTTONS, CLEAR INPUTS, ERRORS AND HEADING
+	const switchToDefault = () => {
+		noteBoxHeading.textContent = 'Add note'
+		arrayOfOptionButtons.forEach(btn => {
+			btn.classList.toggle('active')
+		})
+
+		clearInputsAndErrors()
 	}
 
 	// MANAGE BUTTONS
@@ -120,10 +200,19 @@ export const notesAppFunction = () => {
 			clearInputsAndErrors()
 		} else if (e.target.classList.contains('note__box--buttons-deleteall')) {
 			deleteAllNotes()
+			clearInputsAndErrors()
+		} else if (e.target.classList.contains('note__body--delete')) {
+			deleteClickedNote(e)
+		} else if (e.target.classList.contains('note__body--edit')) {
+			editNoteInNote(e)
+		} else if (e.target.classList.contains('note__box--buttons-edit')) {
+			editNoteBtn()
+		} else if (e.target.classList.contains('note__box--buttons-cancel')) {
+			switchToDefault()
 		}
 	}
 
-	noteOptionButtons.addEventListener('click', manageNotesButtons)
+	document.addEventListener('click', manageNotesButtons)
 	document.addEventListener('DOMContentLoaded', addNotesFromCookies)
 	checkIfNoteListEmpty()
 }
