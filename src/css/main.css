@@ -1,6 +1,7 @@
 @import '_variables.css';
 @import '_todo.css';
 @import '_notes.css';
+@import '_finances.css';
 
 *,
 *::after,

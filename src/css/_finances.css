@@ -1,0 +1,163 @@
+.finance,
+.finances__container,
+.finances__content {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.finance {
+	position: relative;
+	width: 100vw;
+	overflow: hidden;
+}
+
+.finance .app__line {
+	width: 100%;
+	max-width: 150px;
+}
+
+.finances__container {
+	width: 100%;
+	max-width: 1200px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	color: var(--text-color);
+}
+
+.finances__content {
+	width: 100%;
+	padding: 4em 3em;
+}
+
+.finances__income,
+.finances__expenses,
+.finances__total {
+	width: 100%;
+	max-width: 500px;
+	padding: 2em 1.5em;
+	border-radius: 10px;
+	background-color: var(--element-color);
+	border: 2px solid var(--check-color);
+}
+
+.finances__income--title,
+.finances__expenses--title {
+	text-align: center;
+	font-size: 2em;
+	color: var(--check-color);
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+.finances__income--list,
+.finances__expenses--list {
+	padding: 1em;
+}
+
+.finances__income--item,
+.finances__expenses--item {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 0.8em;
+	font-size: 1.4em;
+}
+
+.finances__income--item-text,
+.finances__expenses--item-text {
+	display: flex;
+	align-items: center;
+	width: 75%;
+}
+
+.finances__income--item-icon,
+.finances__expenses--item-icon {
+	width: 30px;
+	margin-right: 0.4em;
+	font-size: 1.4em;
+}
+
+.finances__income--item-name,
+.finances__expenses--item-name {
+	font-weight: bold;
+}
+
+.finances__income--item-number,
+.finances__expenses--item-number {
+	margin-left: 0.5em;
+	font-weight: bold;
+	color: var(--check-color);
+}
+
+.finances__expenses {
+	margin-top: 4em;
+	border: 2px solid var(--alert-color);
+}
+
+.finances__expenses--title,
+.finances__expenses--item-number {
+	color: var(--alert-color);
+}
+
+.finances__total {
+	margin-top: 4em;
+	padding: 2em;
+	border: 2px solid var(--edit-color);
+}
+
+.finances__total--title {
+	padding: 0.5em;
+	font-size: 2em;
+	letter-spacing: 1px;
+    text-transform: uppercase;
+	text-align: center;
+    color: var(--edit-color);
+}
+
+.finances__total--income,
+.finances__total--expenses,
+.finances__total--balans {
+	display: flex;
+	justify-content: space-between;
+    align-items: center;
+	margin: 1em 0;
+	font-size: 1.4em;
+}
+
+.finances__total--income-title,
+.finances__total--expenses-title,
+.finances__total--balance-title {
+	font-weight: bold;
+    margin-right: 0.7em;
+}
+
+.finances__total--income-title i,
+.finances__total--expenses-title i,
+.finances__total--balance-title i {
+	font-size: 1.2em;
+    margin-right: 0.6em;
+}
+
+.finances__total--income-number,
+.finances__total--expenses-number,
+.finances__total--balance-number {
+	font-weight: bold;
+    font-size: 1.6em;
+}
+
+.finances__total--income-number {
+	color: var(--check-color);
+}
+
+.finances__total--expenses-number {
+	color: var(--alert-color);
+}
+
+.finances__total--balance-number {
+	color: var(--edit-color);
+}

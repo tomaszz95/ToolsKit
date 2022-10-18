@@ -1,7 +1,7 @@
 import { switchPageThemes } from './_switchThemes.js'
 import { todoListFunction } from './_todo.js'
 import { notesAppFunction } from './_notes.js'
-// import { expensesAppFunction } from './_expenses.js'
+import { financesManagerFunction } from './_finances.js'
 // import { calculatorFunction } from './_calculator.js'
 // import { weatherAppFunction } from './_weather.js'
 const navContainer = document.querySelector('.nav__container')
@@ -95,6 +95,6 @@ switchPageThemes()
 
 todoListFunction()
 notesAppFunction()
-// expensesAppFunction()
+financesManagerFunction()
 // weatherAppFunction()
 // calculatorFunction()

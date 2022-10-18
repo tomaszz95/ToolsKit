@@ -156,16 +156,17 @@
                         </ul>
                     </div>
                     <div class="finances__total">
+                        <h3 class="finances__total--title">Total Values</h3>
                         <div class="finances__total--income">
-                            <p class="finances__total--income-title">Total income</p>
+                            <p class="finances__total--income-title"><i class="fa-solid fa-plus"></i> Total income</p>
                             <span class="finances__total--income-number">50505 zł</span>
                         </div>
                         <div class="finances__total--expenses">
-                            <p class="finances__total--expenses-title">Total expenses</p>
+                            <p class="finances__total--expenses-title"><i class="fa-solid fa-minus"></i> Total expenses</p>
                             <span class="finances__total--expenses-number">50505 zł</span>
                         </div>
                         <div class="finances__total--balans">
-                            <p class="finances__total--balance-title">Balance</p>
+                            <p class="finances__total--balance-title"><i class="fa-solid fa-wallet"></i> Balance</p>
                             <span class="finances__total--balance-number">50505 zł</span>
                         </div>
                     </div>
@@ -196,11 +197,9 @@
                     <select id='transaction-type' class="finances__modal--icon-select">
                         <option value="0" selected disabled>--choose type of transaction--</option>
                         <option value="Work">Work</option>
-                        <option value="Housing">Housing</option>
-                        <option value="Utilities">Utilities</option>
+                        <option value="Bills">Bills</option>
                         <option value="Transport">Transport</option>
                         <option value="Shopping">Shopping</option>
-                        <option value="Groceries">Groceries</option>
                         <option value="Healthcare">Healthcare</option>
                         <option value="Food">Food</option>
                         <option value="Fun">Fun</option>
@@ -235,7 +234,7 @@
     <script type='module' src="./src/js/_switchThemes.js"></script>
     <script type='module' src="./src/js/_todo.js"></script>
     <script type='module' src="./src/js/_notes.js"></script>
-    <script type='module' src="./src/js/_expenses.js"></script>
+    <script type='module' src="./src/js/_finances.js"></script>
     <script type='module' src="./src/js/_calculator.js"></script>
     <script type='module' src="./src/js/_weather.js"></script>
 </body>
