@@ -116,66 +116,68 @@
             <h2 class="app__title">Finances Manager</h2>
             <div class="app__line"></div>
             <div class="finances__container">
-                <div class="finances__content">
-                    <div class="finances__income">
-                        <h3 class="finances__income--title">Income</h3>
-                        <ul class="finances__income--list">
-                            <li class="finances__income--item">
-                                <div class="finances__income--item-text">
-                                    <i class="finances__income--item-icon fa-solid fa-money-bill"></i>
-                                    <p class="finances__income--item-name">Piniondze</p>
-                                </div>
-                                <span class="finances__income--item-number">3000 zł</span>
-                            </li>
-                            <li class="finances__income--item">
-                                <div class="finances__income--item-text">
-                                    <i class="finances__income--item-icon fa-solid fa-bullseye"></i>
-                                    <p class="finances__income--item-name">Wincyj piniendzy</p>
-                                </div>
-                                <span class="finances__income--item-number">5000 zł</span>
-                            </li>
-                        </ul>
+                <div class="finances__income">
+                    <h3 class="finances__income--title">Income</h3>
+                    <ul class="finances__income--list">
+                        <li class="finances__income--item">
+                            <div class="finances__income--item-text">
+                                <i class="finances__income--item-icon fa-solid fa-money-bill"></i>
+                                <p class="finances__income--item-name">Piniondze</p>
+                            </div>
+                            <span class="finances__income--item-number">3000 zł</span>
+                        </li>
+                        <li class="finances__income--item">
+                            <div class="finances__income--item-text">
+                                <i class="finances__income--item-icon fa-solid fa-bullseye"></i>
+                                <p class="finances__income--item-name">Wincyj piniendzy</p>
+                            </div>
+                            <span class="finances__income--item-number">5000 zł</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="finances__expenses">
+                    <h3 class="finances__expenses--title">Expenses</h3>
+                    <ul class="finances__expenses--list">
+                        <li class="finances__expenses--item">
+                            <div class="finances__expenses--item-text">
+                                <i class="finances__expenses--item-icon fa-solid fa-money-bill"></i>
+                                <p class="finances__expenses--item-name">Piniondze</p>
+                            </div>
+                            <span class="finances__expenses--item-number">3000 zł</span>
+                        </li>
+                        <li class="finances__expenses--item">
+                            <div class="finances__expenses--item-text">
+                                <i class="finances__expenses--item-icon fa-solid fa-bullseye"></i>
+                                <p class="finances__expenses--item-name">Wincyj piniendzy</p>
+                            </div>
+                            <span class="finances__expenses--item-number">5000 zł</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="finances__total">
+                    <h3 class="finances__total--title">Total Values</h3>
+                    <div class="finances__total--income">
+                        <p class="finances__total--income-title"><i class="fa-solid fa-plus"></i> Total income</p>
+                        <span class="finances__total--income-number">50505 zł</span>
                     </div>
-                    <div class="finances__expenses">
-                        <h3 class="finances__expenses--title">Expenses</h3>
-                        <ul class="finances__expenses--list">
-                            <li class="finances__expenses--item">
-                                <div class="finances__expenses--item-text">
-                                    <i class="finances__expenses--item-icon fa-solid fa-money-bill"></i>
-                                    <p class="finances__expenses--item-name">Piniondze</p>
-                                </div>
-                                <span class="finances__expenses--item-number">3000 zł</span>
-                            </li>
-                            <li class="finances__expenses--item">
-                                <div class="finances__expenses--item-text">
-                                    <i class="finances__expenses--item-icon fa-solid fa-bullseye"></i>
-                                    <p class="finances__expenses--item-name">Wincyj piniendzy</p>
-                                </div>
-                                <span class="finances__expenses--item-number">5000 zł</span>
-                            </li>
-                        </ul>
+                    <div class="finances__total--expenses">
+                        <p class="finances__total--expenses-title"><i class="fa-solid fa-minus"></i> Total expenses
+                        </p>
+                        <span class="finances__total--expenses-number">50505 zł</span>
                     </div>
-                    <div class="finances__total">
-                        <h3 class="finances__total--title">Total Values</h3>
-                        <div class="finances__total--income">
-                            <p class="finances__total--income-title"><i class="fa-solid fa-plus"></i> Total income</p>
-                            <span class="finances__total--income-number">50505 zł</span>
-                        </div>
-                        <div class="finances__total--expenses">
-                            <p class="finances__total--expenses-title"><i class="fa-solid fa-minus"></i> Total expenses</p>
-                            <span class="finances__total--expenses-number">50505 zł</span>
-                        </div>
-                        <div class="finances__total--balans">
-                            <p class="finances__total--balance-title"><i class="fa-solid fa-wallet"></i> Balance</p>
-                            <span class="finances__total--balance-number">50505 zł</span>
-                        </div>
+                    <div class="finances__total--balans">
+                        <p class="finances__total--balance-title"><i class="fa-solid fa-wallet"></i> Balance</p>
+                        <span class="finances__total--balance-number">50505 zł</span>
                     </div>
                 </div>
-                <div class="finances__tools">
+            </div>
+            <div class="finances__tools">
+                <div class="finances__tools-btns">
                     <button class="finances__tools--add" aria-label="Add transaction">Add transaction</button>
                     <button class="finances__tools--delincome" aria-label="Delete income">Delete income</button>
                     <button class="finances__tools--delexpenses" aria-label="Delete expenses">Delete expenses</button>
-                    <button class="finances__tools--delall" aria-label="Delete all income and expenses">Delete all</button>
+                    <button class="finances__tools--delall" aria-label="Delete all income and expenses">Delete
+                        all</button>
                 </div>
             </div>
             <div class="finances__modal">
@@ -187,13 +189,15 @@
                 </div>
                 <div class="finances__modal--number">
                     <label for="transaction-number" class="finances__modal--number-label">Transaction value:</label>
-                    <small class="finances__modal--number-info">(If the number is greater than zero, it will be an income. If smaller, it will be an expense)</small>
-                    <input type="number" id='transaction-number' class="finances__modal--number-input" placeholder='[Enter transaction value..]'>
+                    <small class="finances__modal--number-info">(If the number is greater than zero, it will be an
+                        <span class='income'>income</span>. If smaller, it will be an <span
+                            class='expense'>expense</span>)</small>
+                    <input type="number" id='transaction-number' class="finances__modal--number-input">
                     <p class="finances__modal--number-error">This field cannot be empty!</p>
                 </div>
                 <div class="finances__modal--icon">
                     <label for="transaction-type" class="finances__modal--icon-label">Transaction type:</label>
-                    <small class="finances__modal--icon-info">[Choose the type of transaction]</small>
+                    <small class="finances__modal--icon-info">(Choose the type of transaction)</small>
                     <select id='transaction-type' class="finances__modal--icon-select">
                         <option value="0" selected disabled>--choose type of transaction--</option>
                         <option value="Work">Work</option>
@@ -206,7 +210,7 @@
                         <option value="Gifts">Gifts</option>
                         <option value="Other">Other</option>
                     </select>
-                    <p class="finances__modal--number-error">You must choose type of transaction!</p>
+                    <p class="finances__modal--icon-error">You must choose type of transaction!</p>
                 </div>
                 <div class='finances__modal--btns'>
                     <button class="finances__modal--btns-add">Add transaction</button>

@@ -12,6 +12,8 @@ export const switchPageThemes = () => {
 		root.style.setProperty('--alert-color', 'rgb(255, 1, 1)')
 		root.style.setProperty('--check-color', 'rgb(59, 253, 11)')
 		root.style.setProperty('--edit-color', 'rgb(4, 216, 254)')
+		root.style.setProperty('--circle-gradient-color', 'rgb(8, 4, 8)')
+		root.style.setProperty('--background-gradient-color', 'rgb(29, 26, 26)')
 	}
 	
 	const switchColorToLight = () => {
@@ -22,6 +24,8 @@ export const switchPageThemes = () => {
 		root.style.setProperty('--alert-color', 'rgb(216, 7, 7)')
 		root.style.setProperty('--check-color', 'rgb(13, 141, 17)')
 		root.style.setProperty('--edit-color', 'rgb(8, 50, 250)')
+		root.style.setProperty('--circle-gradient-color', 'rgb(255, 255, 255)')
+		root.style.setProperty('--background-gradient-color', 'rgb(166, 166, 166)')
 	}
 
 	// Cookies

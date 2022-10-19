@@ -271,6 +271,28 @@ body {
 
 /* QUERIES */
 
+@media (min-width: 786px) {
+	.finances__tools button {
+		font-size: 1.6em;
+	}
+	.finances__tools--add {
+		width: 94%;
+		max-width: 900px;
+	}
+
+	.finances__tools--delall,
+	.finances__tools--delexpenses,
+	.finances__tools--delincome {
+		width: 30%;
+		margin: 0 0.5em;
+		max-width: 300px;
+	}
+
+	.finances__modal--btns button {
+		height: 70px;
+	}
+}
+
 @media (min-width: 992px) {
 	.nav__title {
 		font-size: 4em;
@@ -366,5 +388,93 @@ body {
 
 	.note__box--buttons-deleteall {
 		margin-top: 0;
+	}
+
+	.finances__container {
+		flex-direction: row;
+		flex-wrap: wrap;
+	}
+
+	.finances__income,
+	.finances__expenses {
+		margin: 0 1em;
+	}
+
+	.finances__income,
+	.finances__expenses,
+	.finances__total {
+		max-width: 500px;
+	}
+
+	.finances__income--title,
+	.finances__expenses--title {
+		font-size: 2.2em;
+	}
+
+	.finances__income--list,
+	.finances__expenses--list {
+		padding: 1em;
+	}
+
+	.finances__income--item,
+	.finances__expenses--item {
+		font-size: 1.5em;
+	}
+
+	.finances__income--item-icon,
+	.finances__expenses--item-icon {
+		margin-right: 0.6em;
+		font-size: 1.5em;
+	}
+
+	.finances__income--item-number,
+	.finances__expenses--item-number {
+		font-size: 1.2em;
+	}
+
+	.finances__expenses {
+		margin-top: 0;
+	}
+
+	.finances__total--title {
+		font-size: 2.2em;
+	}
+
+	.finances__total--income,
+	.finances__total--expenses,
+	.finances__total--balans {
+		font-size: 1.5em;
+	}
+
+	.finances__total--income-title,
+	.finances__total--expenses-title,
+	.finances__total--balance-title {
+		margin-right: 0.8em;
+	}
+
+	.finances__total--income-title i,
+	.finances__total--expenses-title i,
+	.finances__total--balance-title i {
+		font-size: 1.4em;
+		margin-right: 0.8em;
+	}
+
+	.finances__total--income-number,
+	.finances__total--expenses-number,
+	.finances__total--balance-number {
+		font-size: 1.8em;
+	}
+
+	.finances__modal--btns button {
+		max-width: 600px;
+		font-size: 0.8em;
+		margin: 0 1em;
+	}
+}
+
+@media (min-width: 1200px) {
+	.finances__income,
+	.finances__expenses {
+		margin: 0 2em;
 	}
 }

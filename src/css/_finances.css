@@ -1,6 +1,5 @@
 .finance,
-.finances__container,
-.finances__content {
+.finances__container {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -26,10 +25,6 @@
 	align-items: center;
 	flex-direction: column;
 	color: var(--text-color);
-}
-
-.finances__content {
-	width: 100%;
 	padding: 4em 3em;
 }
 
@@ -114,9 +109,9 @@
 	padding: 0.5em;
 	font-size: 2em;
 	letter-spacing: 1px;
-    text-transform: uppercase;
+	text-transform: uppercase;
 	text-align: center;
-    color: var(--edit-color);
+	color: var(--edit-color);
 }
 
 .finances__total--income,
@@ -124,7 +119,7 @@
 .finances__total--balans {
 	display: flex;
 	justify-content: space-between;
-    align-items: center;
+	align-items: center;
 	margin: 1em 0;
 	font-size: 1.4em;
 }
@@ -133,21 +128,21 @@
 .finances__total--expenses-title,
 .finances__total--balance-title {
 	font-weight: bold;
-    margin-right: 0.7em;
+	margin-right: 0.7em;
 }
 
 .finances__total--income-title i,
 .finances__total--expenses-title i,
 .finances__total--balance-title i {
 	font-size: 1.2em;
-    margin-right: 0.6em;
+	margin-right: 0.6em;
 }
 
 .finances__total--income-number,
 .finances__total--expenses-number,
 .finances__total--balance-number {
 	font-weight: bold;
-    font-size: 1.6em;
+	font-size: 1.6em;
 }
 
 .finances__total--income-number {
@@ -160,4 +155,159 @@
 
 .finances__total--balance-number {
 	color: var(--edit-color);
+}
+
+.finances__tools {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	background-color: var(--element-color);
+	padding: 2em;
+}
+
+.finances__tools-btns {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	width: 100%;
+	max-width: 1200px;
+}
+
+.finances__tools button {
+	padding: 0.8em 1.2em;
+	background-color: transparent;
+	border: 1px solid var(--highlight-color);
+	color: var(--text-color);
+	font-weight: bold;
+	font-size: 1.5em;
+	border-radius: 20px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+	margin: 1em 0.5em;
+}
+
+.finances__tools button:hover {
+	background-color: var(--primary-color);
+}
+
+.finances__tools--add,
+.finances__tools--delall {
+	width: 92%;
+}
+
+.finances__tools--delincome {
+	width: 45%;
+}
+
+.finances__tools--delexpenses {
+	width: 45%;
+}
+
+.finances__modal {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 2em;
+	font-size: 2.5em;
+	background: radial-gradient(circle at 30% 15%, var(--circle-gradient-color), var(--background-gradient-color));
+	color: var(--text-color);
+	text-align: center;
+	transform: translateX(100%);
+	display: none;
+}
+
+.finances__modal--name,
+.finances__modal--number,
+.finances__modal--icon {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.finances__modal--name-label,
+.finances__modal--number-label,
+.finances__modal--icon-label {
+	font-weight: bold;
+	margin-bottom: 0.4em;
+}
+
+.finances__modal--name-info,
+.finances__modal--number-info,
+.finances__modal--icon-info {
+	font-size: 0.6em;
+	margin-bottom: 0.6em;
+}
+
+.finances__modal--name-input,
+.finances__modal--number-input,
+.finances__modal--icon-select {
+	width: 100%;
+	padding: 1em 2em;
+	border-radius: 8px;
+}
+
+.finances__modal--name-error,
+.finances__modal--number-error,
+.finances__modal--icon-error {
+	font-size: 0.6em;
+	margin-top: 0.6em;
+	color: var(--alert-color);
+	font-weight: bold;
+	visibility: hidden;
+}
+
+.finances__modal--number,
+.finances__modal--icon {
+	margin-top: 2em;
+}
+
+.finances__modal--number-info .income {
+	color: var(--check-color);
+	font-weight: bold;
+}
+
+.finances__modal--number-info .expense {
+	color: var(--alert-color);
+	font-weight: bold;
+}
+
+.finances__modal--icon-select {
+	margin-top: 0.4em;
+	padding: 1em;
+}
+
+.finances__modal--btns {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 2em;
+	width: 100%;
+}
+
+.finances__modal--btns button {
+	width: 50%;
+	max-width: 300px;
+	height: 80px;
+	padding: 1em;
+	background-color: transparent;
+	border: 1px solid var(--highlight-color);
+	color: var(--text-color);
+	font-weight: bold;
+	font-size: 0.7em;
+	border-radius: 20px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+	margin: 0 0.5em;
+}
+
+.finances__modal--btns button:hover {
+	background-color: var(--primary-color);
 }
