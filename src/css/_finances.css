@@ -67,7 +67,6 @@
 .finances__expenses--item-text {
 	display: flex;
 	align-items: center;
-	width: 75%;
 }
 
 .finances__income--item-icon,
@@ -84,9 +83,37 @@
 
 .finances__income--item-number,
 .finances__expenses--item-number {
+	display: flex;
+	align-items: center;
 	margin-left: 0.5em;
 	font-weight: bold;
+}
+
+.finances__income--item-number span,
+.finances__expenses--item-number span {
+	margin: 0 1em 0 2em;
+	font-weight: bold;
 	color: var(--check-color);
+}
+
+.finances__income--item-number button,
+.finances__expenses--item-number button {
+	background-color: transparent;
+	padding: 1em;
+	cursor: pointer;
+	border: none;
+	color: var(--text-color);
+	transition: transform 0.5s;
+}
+
+.finances__income--item-number button:hover,
+.finances__expenses--item-number button:hover {
+	transform: scale(1.1);
+}
+
+.finances__income--item-number i,
+.finances__expenses--item-number i {
+	font-size: 1.2em;
 }
 
 .finances__expenses {
@@ -95,7 +122,7 @@
 }
 
 .finances__expenses--title,
-.finances__expenses--item-number {
+.finances__expenses--item-number span {
 	color: var(--alert-color);
 }
 
@@ -210,7 +237,6 @@
 	left: 0;
 	bottom: 0;
 	right: 0;
-	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
@@ -220,7 +246,11 @@
 	color: var(--text-color);
 	text-align: center;
 	transform: translateX(100%);
-	display: none;
+	opacity: 0;
+}
+
+.finances__modal.active {
+	animation: openModal 1s cubic-bezier(0.325, 0.82, 0.465, 1) both;
 }
 
 .finances__modal--name,
@@ -310,4 +340,15 @@
 
 .finances__modal--btns button:hover {
 	background-color: var(--primary-color);
+}
+
+@keyframes openModal {
+	from {
+		opacity: 0;
+		transform: translateX(100%);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
 }
