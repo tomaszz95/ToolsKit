@@ -19,6 +19,7 @@ export const financesManagerFunction = () => {
 	let incomeArr = []
 	let expensesArr = []
 
+	// MANAGE TOTAL VIEW VALUES
 	const totalValuesAmount = () => {
 		const reducedIncomeArr = incomeArr.reduce((prev, curr) => prev + curr, 0)
 		const reducedExpensesArr = expensesArr.reduce((prev, curr) => prev + curr, 0)
@@ -42,6 +43,7 @@ export const financesManagerFunction = () => {
 		totalBalanceNumber.textContent = `${bilansValue}$`
 	}
 
+	// CLEAR MODAL
 	const clearFinancesModal = () => {
 		financesModalNameInput.value = ''
 		financesModalNameErr.style.visibility = 'hidden'
@@ -68,6 +70,7 @@ export const financesManagerFunction = () => {
 		totalValuesAmount()
 	}
 
+	// DELETE ITEM AND UPDATE ARR'S
 	const deleteItem = e => {
 		const clickedItem = e.target.closest('li')
 		const valueInItem = parseFloat(e.target.closest('div').firstElementChild.textContent)
@@ -90,6 +93,7 @@ export const financesManagerFunction = () => {
 		totalValuesAmount()
 	}
 
+	// CHECK WHAT ICON SHOULD BE VIEWD
 	const chooseProperIcon = (transactionType, transactionIcon) => {
 		let iconClass
 		switch (transactionType) {
@@ -128,6 +132,7 @@ export const financesManagerFunction = () => {
 		transactionIcon.classList.add(`${iconClass}`)
 	}
 
+	// CREATE NEW TASK
 	const createNewItem = (transactionName, transactionNumber, transactionType, transactionPattern) => {
 		const liItem = document.createElement('li')
 		liItem.classList.add(`finances__${transactionPattern}--item`)
@@ -171,6 +176,7 @@ export const financesManagerFunction = () => {
 		totalValuesAmount()
 	}
 
+	// CREATE VARIABLES FOR NEW TASK AND CHECK IF IT'S INCOME OR EXPENSES
 	const createNewTransactionItem = () => {
 		const transactionName = financesModalNameInput.value
 		const transactionNumber = Number(Number(financesModalNumberInput.value).toFixed(2))
@@ -182,6 +188,7 @@ export const financesManagerFunction = () => {
 		createNewItem(transactionName, transactionNumber, transactionType, transactionPattern)
 	}
 
+	// CHECK IF INPUTS ARE EMPTY | ADD TASK AND CLEAR INPUTS LATER
 	const createNewTransaction = () => {
 		financesModalNameInput.value == ''
 			? (financesModalNameErr.style.visibility = 'visible')
@@ -211,6 +218,7 @@ export const financesManagerFunction = () => {
 		}
 	}
 
+	// MANAGE OPTION BTN'S
 	const manageFinancesBtns = e => {
 		if (e.target.classList.contains('finances__tools--add')) {
 			openAddTransactionModal()
@@ -224,6 +232,7 @@ export const financesManagerFunction = () => {
 		}
 	}
 
+	// MANAGE BUTTONS IN MODAL BY CLICK
 	const manageFinancesModalBtns = e => {
 		if (e.target.classList.contains('finances__modal--btns-add')) {
 			createNewTransaction()
@@ -233,6 +242,7 @@ export const financesManagerFunction = () => {
 		}
 	}
 
+	// CONTROL BUTTONS IN MODAL BY KEYES
 	const financesModalKeyes = e => {
 		if (financesModal.classList.contains('active')) {
 			if (e.keyCode === 13) {
