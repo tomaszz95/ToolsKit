@@ -1,4 +1,5 @@
 export const financesManagerFunction = () => {
+	const navContainer = document.querySelector('.nav__container')
 	const financesToolsBtns = document.querySelector('.finances__tools-btns')
 	const financesModal = document.querySelector('.finances__modal')
 	const financesModalBtns = document.querySelector('.finances__modal--btns')
@@ -13,29 +14,32 @@ export const financesManagerFunction = () => {
 	const totalIncomeNumber = document.querySelector('.finances__total--income-number')
 	const totalExpensesNumber = document.querySelector('.finances__total--expenses-number')
 	const totalBalanceNumber = document.querySelector('.finances__total--balance-number')
-
+	const financesContainer = document.querySelector('.finances__container')
 	let financesCookiesObject = {}
-	let incomeArr = [200, 300, 800]
-	let expensesArr = [200, 300, 200]
+	let incomeArr = []
+	let expensesArr = []
 
 	const totalValuesAmount = () => {
-		const reducesIncomeArr = incomeArr.reduce((prev, curr) => prev + curr, 0)
-		const reducesExpensesArr = expensesArr.reduce((prev, curr) => prev + curr, 0)
+		const reducedIncomeArr = incomeArr.reduce((prev, curr) => prev + curr, 0)
+		const reducedExpensesArr = expensesArr.reduce((prev, curr) => prev + curr, 0)
+		const bilansValue = (reducedIncomeArr + reducedExpensesArr).toFixed(2)
+
+		const reducedIncomeValue = reducedIncomeArr.toFixed(2)
+		const reducedExpensesValue = reducedExpensesArr.toFixed(2)
 
 		if (incomeArr.length == 0) {
-			totalIncomeNumber.textContent = '0'
+			totalIncomeNumber.textContent = '0.00$'
 		} else {
-			totalIncomeNumber.textContent = reducesIncomeArr
+			totalIncomeNumber.textContent = `${reducedIncomeValue}$`
 		}
 
 		if (expensesArr.length == 0) {
-			totalExpensesNumber.textContent = '0'
+			totalExpensesNumber.textContent = '0.00$'
 		} else {
-			totalExpensesNumber.textContent = reducesExpensesArr
+			totalExpensesNumber.textContent = `${reducedExpensesValue}$`
 		}
 
-		const bilansNumber = reducesIncomeArr - reducesExpensesArr
-		totalBalanceNumber.textContent = bilansNumber
+		totalBalanceNumber.textContent = `${bilansValue}$`
 	}
 
 	const clearFinancesModal = () => {
@@ -49,6 +53,7 @@ export const financesManagerFunction = () => {
 
 	const openAddTransactionModal = () => {
 		financesModal.classList.add('active')
+		window.scrollTo({ top: 213, left: 0, behavior: 'instant' })
 	}
 
 	const deleteAllIncome = () => {
@@ -63,22 +68,118 @@ export const financesManagerFunction = () => {
 		totalValuesAmount()
 	}
 
-	const deleteItem = () => {}
+	const deleteItem = e => {
+		const clickedItem = e.target.closest('li')
+		const valueInItem = parseFloat(e.target.closest('div').firstElementChild.textContent)
+		if (
+			e.target.classList.contains('finances__income--item-number-btn') ||
+			e.target.classList.contains('finances__income--x-icon')
+		) {
+			incomeList.removeChild(clickedItem)
+			const indexOfClickedValue = incomeArr.indexOf(valueInItem)
+			incomeArr.splice(indexOfClickedValue, 1)
+		} else if (
+			e.target.classList.contains('finances__expenses--item-number-btn') ||
+			e.target.classList.contains('finances__expenses--x-icon')
+		) {
+			expensesList.removeChild(clickedItem)
+			const indexOfClickedValue = expensesArr.indexOf(valueInItem)
+			expensesArr.splice(indexOfClickedValue, 1)
+		}
 
-	const createNewIncomeItem = () => {
-		console.log('income')
+		totalValuesAmount()
 	}
 
-	const createNewExpenseItem = () => {
-		console.log('expense')
+	const chooseProperIcon = (transactionType, transactionIcon) => {
+		let iconClass
+		switch (transactionType) {
+			case 'Work':
+				iconClass = 'fa-briefcase'
+				break
+			case 'Bills':
+				iconClass = 'fa-hand-holding-dollar'
+				break
+			case 'Transport':
+				iconClass = 'fa-car'
+				break
+			case 'Shopping':
+				iconClass = 'fa-cart-shopping'
+				break
+			case 'Healthcare':
+				iconClass = 'fa-stethoscope'
+				break
+			case 'Food':
+				iconClass = 'fa-burger'
+				break
+			case 'Fun':
+				iconClass = 'fa-film'
+				break
+			case 'Gifts':
+				iconClass = 'fa-gift'
+				break
+			case 'Other':
+				iconClass = 'fa-dice'
+				break
+			default:
+				iconClass = 'fa-question'
+				break
+		}
+		transactionIcon.classList.add('fa-solid')
+		transactionIcon.classList.add(`${iconClass}`)
+	}
+
+	const createNewItem = (transactionName, transactionNumber, transactionType, transactionPattern) => {
+		const liItem = document.createElement('li')
+		liItem.classList.add(`finances__${transactionPattern}--item`)
+
+		const textContainer = document.createElement('div')
+		textContainer.classList.add(`finances__${transactionPattern}--item-text`)
+
+		const transactionIcon = document.createElement('i')
+		transactionIcon.classList.add(`finances__${transactionPattern}--item-icon`)
+		chooseProperIcon(transactionType, transactionIcon)
+
+		const textName = document.createElement('p')
+		textName.classList.add(`finances__${transactionPattern}--item-name`)
+		textName.textContent = transactionName
+
+		const numberContainer = document.createElement('div')
+		numberContainer.classList.add(`finances__${transactionPattern}--item-number`)
+
+		const numberAmount = document.createElement('span')
+		numberAmount.textContent = `${transactionNumber}$`
+
+		const numberDeleteBtn = document.createElement('button')
+		numberDeleteBtn.classList.add(`finances__${transactionPattern}--item-number-btn`)
+		numberDeleteBtn.setAttribute('aria-label', 'Delete transaction')
+
+		const numberDeleteIcon = document.createElement('i')
+		numberDeleteIcon.classList.add('fa-solid', 'fa-x', `finances__${transactionPattern}--x-icon`)
+
+		numberDeleteBtn.append(numberDeleteIcon)
+		textContainer.append(transactionIcon, textName)
+		numberContainer.append(numberAmount, numberDeleteBtn)
+		liItem.append(textContainer, numberContainer)
+
+		if (transactionPattern == 'income') {
+			incomeList.append(liItem)
+			incomeArr.push(transactionNumber)
+		} else {
+			expensesList.append(liItem)
+			expensesArr.push(transactionNumber)
+		}
+		totalValuesAmount()
 	}
 
 	const createNewTransactionItem = () => {
-		if (financesModalNumberInput.value > '0') {
-			createNewIncomeItem()
-		} else if (financesModalNumberInput.value < '0') {
-			createNewExpenseItem()
-		}
+		const transactionName = financesModalNameInput.value
+		const transactionNumber = Number(Number(financesModalNumberInput.value).toFixed(2))
+		const transactionType = financesModalSelect.value
+		let transactionPattern
+
+		transactionNumber > 0 ? (transactionPattern = 'income') : (transactionPattern = 'expenses')
+
+		createNewItem(transactionName, transactionNumber, transactionType, transactionPattern)
 	}
 
 	const createNewTransaction = () => {
@@ -106,6 +207,7 @@ export const financesManagerFunction = () => {
 		) {
 			createNewTransactionItem()
 			clearFinancesModal()
+			financesModal.classList.remove('active')
 		}
 	}
 
@@ -131,7 +233,32 @@ export const financesManagerFunction = () => {
 		}
 	}
 
+	const financesModalKeyes = e => {
+		if (financesModal.classList.contains('active')) {
+			if (e.keyCode === 13) {
+				createNewTransaction()
+			} else if (e.keyCode === 27) {
+				financesModal.classList.remove('active')
+				clearFinancesModal()
+			}
+		}
+	}
+
+	// CLOSING MODAL WHEN CLICK OTHER APP
+	const closeFinancesModalWhenClickedOnNavItem = e => {
+		if (
+			e.target.classList.contains('nav__container--item') ||
+			e.target.parentElement.classList.contains('nav__container--item')
+		) {
+			financesModal.classList.remove('active')
+			clearFinancesModal()
+		}
+	}
+
 	financesToolsBtns.addEventListener('click', manageFinancesBtns)
 	financesModalBtns.addEventListener('click', manageFinancesModalBtns)
+	financesContainer.addEventListener('click', deleteItem)
+	document.addEventListener('keyup', financesModalKeyes)
+	navContainer.addEventListener('click', closeFinancesModalWhenClickedOnNavItem)
 	totalValuesAmount()
 }

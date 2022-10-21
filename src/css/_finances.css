@@ -33,7 +33,7 @@
 .finances__total {
 	width: 100%;
 	max-width: 500px;
-	padding: 2em 1.5em;
+	padding: 2em 0.5em;
 	border-radius: 10px;
 	background-color: var(--element-color);
 	border: 2px solid var(--check-color);
@@ -71,8 +71,8 @@
 
 .finances__income--item-icon,
 .finances__expenses--item-icon {
-	width: 30px;
-	margin-right: 0.4em;
+	width: 20px;
+	margin-right: 0.6em;
 	font-size: 1.4em;
 }
 
@@ -240,7 +240,7 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	padding: 2em;
+	padding: 1em;
 	font-size: 2.5em;
 	background: radial-gradient(circle at 30% 15%, var(--circle-gradient-color), var(--background-gradient-color));
 	color: var(--text-color);
@@ -296,7 +296,7 @@
 
 .finances__modal--number,
 .finances__modal--icon {
-	margin-top: 2em;
+	margin-top: 0.6em;
 }
 
 .finances__modal--number-info .income {
@@ -315,10 +315,10 @@
 }
 
 .finances__modal--btns {
+	padding: 1em 0;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	margin-top: 2em;
 	width: 100%;
 }
 
