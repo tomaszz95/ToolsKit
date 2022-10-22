@@ -19,6 +19,22 @@ export const financesManagerFunction = () => {
 	let incomeArr = []
 	let expensesArr = []
 
+	// COOKIES
+	const addTransactionFromCookies = () => {
+		const financesItemsFromCookies = JSON.parse(localStorage.getItem('finances'))
+		for (const item in financesItemsFromCookies) {
+			const itemName = financesItemsFromCookies[item].transactionName
+			const itemNumber = financesItemsFromCookies[item].transactionNumber
+			const itemType = financesItemsFromCookies[item].transactionType
+			const itemPattern = financesItemsFromCookies[item].transactionPattern
+
+			if (itemName == '') return
+			createNewItem(itemName, itemNumber, itemType, itemPattern)
+		}
+
+		totalValuesAmount()
+	}
+
 	// MANAGE TOTAL VIEW VALUES
 	const totalValuesAmount = () => {
 		const reducedIncomeArr = incomeArr.reduce((prev, curr) => prev + curr, 0)
@@ -62,18 +78,33 @@ export const financesManagerFunction = () => {
 		incomeList.textContent = ''
 		incomeArr = []
 		totalValuesAmount()
+
+		for (const item in financesCookiesObject) {
+			if (financesCookiesObject[item].transactionPattern == 'income') {
+				delete financesCookiesObject[item]
+				localStorage.setItem('finances', JSON.stringify(financesCookiesObject))
+			}
+		}
 	}
 
 	const deleteAllExpenses = () => {
 		expensesList.textContent = ''
 		expensesArr = []
 		totalValuesAmount()
+
+		for (const item in financesCookiesObject) {
+			if (financesCookiesObject[item].transactionPattern == 'expenses') {
+				delete financesCookiesObject[item]
+				localStorage.setItem('finances', JSON.stringify(financesCookiesObject))
+			}
+		}
 	}
 
 	// DELETE ITEM AND UPDATE ARR'S
 	const deleteItem = e => {
 		const clickedItem = e.target.closest('li')
 		const valueInItem = parseFloat(e.target.closest('div').firstElementChild.textContent)
+		let clickedItemName
 		if (
 			e.target.classList.contains('finances__income--item-number-btn') ||
 			e.target.classList.contains('finances__income--x-icon')
@@ -81,6 +112,7 @@ export const financesManagerFunction = () => {
 			incomeList.removeChild(clickedItem)
 			const indexOfClickedValue = incomeArr.indexOf(valueInItem)
 			incomeArr.splice(indexOfClickedValue, 1)
+			clickedItemName = clickedItem.firstElementChild.lastChild.textContent
 		} else if (
 			e.target.classList.contains('finances__expenses--item-number-btn') ||
 			e.target.classList.contains('finances__expenses--x-icon')
@@ -88,9 +120,17 @@ export const financesManagerFunction = () => {
 			expensesList.removeChild(clickedItem)
 			const indexOfClickedValue = expensesArr.indexOf(valueInItem)
 			expensesArr.splice(indexOfClickedValue, 1)
+			clickedItemName = clickedItem.firstElementChild.lastChild.textContent
 		}
 
 		totalValuesAmount()
+
+		for (const item in financesCookiesObject) {
+			if (item == clickedItemName) {
+				delete financesCookiesObject[item]
+				localStorage.setItem('finances', JSON.stringify(financesCookiesObject))
+			}
+		}
 	}
 
 	// CHECK WHAT ICON SHOULD BE VIEWD
@@ -174,6 +214,8 @@ export const financesManagerFunction = () => {
 			expensesArr.push(transactionNumber)
 		}
 		totalValuesAmount()
+		financesCookiesObject[transactionName] = { transactionName, transactionNumber, transactionType, transactionPattern }
+		localStorage.setItem('finances', JSON.stringify(financesCookiesObject))
 	}
 
 	// CREATE VARIABLES FOR NEW TASK AND CHECK IF IT'S INCOME OR EXPENSES
@@ -210,6 +252,7 @@ export const financesManagerFunction = () => {
 		if (
 			financesModalNameInput.value !== '' &&
 			financesModalNumberInput.value !== '' &&
+			financesModalNumberInput.value !== '0' &&
 			financesModalSelect.value !== '0'
 		) {
 			createNewTransactionItem()
@@ -269,6 +312,7 @@ export const financesManagerFunction = () => {
 	financesModalBtns.addEventListener('click', manageFinancesModalBtns)
 	financesContainer.addEventListener('click', deleteItem)
 	document.addEventListener('keyup', financesModalKeyes)
+	document.addEventListener('DOMContentLoaded', addTransactionFromCookies)
 	navContainer.addEventListener('click', closeFinancesModalWhenClickedOnNavItem)
 	totalValuesAmount()
 }

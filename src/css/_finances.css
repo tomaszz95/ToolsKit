@@ -65,6 +65,7 @@
 
 .finances__income--item-text,
 .finances__expenses--item-text {
+	position: relative;
 	display: flex;
 	align-items: center;
 }
