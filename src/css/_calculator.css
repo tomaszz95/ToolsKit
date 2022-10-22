@@ -28,19 +28,19 @@
 	flex-direction: column;
 	align-items: end;
 	justify-content: space-around;
-	height: 25%;
-	max-height: 110px;
+	height: 130px;
 	padding: 2em;
+	text-align: right;
 	border-bottom: 2px solid var(--text-color-greylish);
 }
 
 .calculator__display-prev {
-	font-size: 1.8em;
+	font-size: 1.7em;
 	color: var(--text-color-greylish);
 }
 
 .calculator__display-active {
-	font-size: 3em;
+	font-size: 2.4em;
 	margin-top: 0.4em;
 	font-weight: bold;
 }
