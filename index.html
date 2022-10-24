@@ -193,47 +193,54 @@
             <div class="app__line"></div>
             <div class="calculator__container">
                 <div class="calculator__display">
-                    <p class="calculator__display-prev">21321213231</p>
-                    <p class="calculator__display-active">0</p>
+                    <p class="calculator__display-prev"></p>
+                    <p class="calculator__display-active"></p>
                 </div>
                 <div class="calculator__box">
-                    <button class="calculator__box-item" aria-label='Delete last number'><i
-                            class="fa-solid fa-delete-left" data-value='Backspace'></i></button>
+                    <button class="calculator__box-item" aria-label='Delete last number' data-value='Backspace'><i
+                            class="fa-solid fa-delete-left"></i></button>
                     <button class="calculator__box-item" aria-label='Delete last value' data-value='Del'>CE</button>
                     <button class="calculator__box-item" aria-label='Delete all values' data-value='DelAll'>C</button>
-                    <button class="calculator__box-item" aria-label='Is equal to' data-value='Enter'>=</button>
-                    <button class="calculator__box-item" aria-label='Add' data-value='+'>+</button>
-                    <button class="calculator__box-item" aria-label='Subtract' data-value='-'>-</button>
-                    <button class="calculator__box-item" aria-label='Multiplication' data-value='*'>*</button>
-                    <button class="calculator__box-item" aria-label='Division' data-value='/'><i
-                            class="fa-solid fa-divide"></i></button>
+                    <button class="calculator__box-item" aria-label='Is equal to' data-value='='>=</button>
+                    <button class="calculator__box-item" aria-label='Add' data-value='+'
+                        data-type='Operation'>+</button>
+                    <button class="calculator__box-item" aria-label='Subtract' data-value='-'
+                        data-type='Operation'>-</button>
+                    <button class="calculator__box-item" aria-label='Multiplication' data-value='*'
+                        data-type='Operation'>*</button>
+                    <button class="calculator__box-item" aria-label='Division' data-value='/'
+                        data-type='Operation'>/</button>
                     <button class="calculator__box-item calculator__box-item--darker" aria-label='Number 7'
-                        data-value='7'>7</button>
+                        data-value='7' data-type='Number'>7</button>
                     <button class="calculator__box-item calculator__box-item--darker" aria-label='Number 8'
-                        data-value='8'>8</button>
+                        data-value='8' data-type='Number'>8</button>
                     <button class="calculator__box-item calculator__box-item--darker" aria-label='Number 9'
-                        data-value='9'>9</button>
-                    <button class="calculator__box-item" aria-label='1 divided by value' data-value='Fraction'>1/x</button>
+                        data-value='9' data-type='Number'>9</button>
+                    <button class="calculator__box-item" aria-label='1 divided by value' data-value='log'
+                        data-type='Solo'>log</button>
                     <button class="calculator__box-item calculator__box-item--darker" aria-label='Number 4'
-                        data-value='4'>4</button>
+                        data-value='4' data-type='Number'>4</button>
                     <button class="calculator__box-item calculator__box-item--darker" aria-label='Number 5'
-                        data-value='5'>5</button>
+                        data-value='5' data-type='Number'>5</button>
                     <button class="calculator__box-item calculator__box-item--darker" aria-label='Number 6'
-                        data-value='6'>6</button>
-                    <button class="calculator__box-item" aria-label='Squared value' data-value='Squared'>x<sup>2</sup></button>
+                        data-value='6' data-type='Number'>6</button>
+                    <button class="calculator__box-item" aria-label='Squared value' data-value='^'
+                        data-type='Solo'>x<sup>2</sup></button>
                     <button class="calculator__box-item calculator__box-item--darker" aria-label='Number 1'
-                        data-value='1'>1</button>
+                        data-value='1' data-type='Number'>1</button>
                     <button class="calculator__box-item calculator__box-item--darker" aria-label='Number 2'
-                        data-value='2'>2</button>
+                        data-value='2' data-type='Number'>2</button>
                     <button class="calculator__box-item calculator__box-item--darker" aria-label='Number 3'
-                        data-value='3'>3</button>
-                    <button class="calculator__box-item" aria-label='Square root' data-value='Root'><i
-                            class="fa-solid fa-square-root-variable"></i></button>
-                    <button class="calculator__box-item" aria-label='Change value to absolute value' data-value='Inverse'>+/-</button>
+                        data-value='3' data-type='Number'>3</button>
+                    <button class="calculator__box-item" aria-label='Square root' data-value='√'
+                        data-type='Solo'>√</button>
+                    <button class="calculator__box-item" aria-label='Change value to absolute value'
+                        data-value='Inverse' data-type='Solo'>+/-</button>
                     <button class="calculator__box-item calculator__box-item--darker" aria-label='Number 0'
-                        data-value='0'>0</button>
+                        data-value='0' data-type='Number'>0</button>
                     <button class="calculator__box-item" aria-label='Comma' data-value=','>,</button>
-                    <button class="calculator__box-item" aria-label='Multipied by e value' data-value='e'>e</button>
+                    <button class="calculator__box-item" aria-label='Multipied by e value' data-value='e'
+                        data-type='Solo'>e</button>
                 </div>
             </div>
         </section>
