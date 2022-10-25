@@ -6,13 +6,19 @@ export const calculatorFunction = () => {
 	let currentValue = ''
 	let prevValue = ''
 	let chosenOperation = ''
+	let result = ''
 
 	// WRITE ON DISPLAY
 	const writeOnDisplay = () => {
 		calculatorDisplayCurrentValue.textContent = currentValue
-		console.log(currentValue);
+
 		if (chosenOperation == '') {
 			calculatorDisplayPrevValue.textContent = ''
+		} else if (prevValue == "Can't divide by 0!") {
+			calculatorDisplayPrevValue.textContent = ''
+			prevValue = ''
+			currentValue = ''
+			chosenOperation = ''
 		} else {
 			calculatorDisplayPrevValue.textContent = prevValue + chosenOperation
 		}
@@ -28,22 +34,29 @@ export const calculatorFunction = () => {
 			chosenOperation = value
 			prevValue = currentValue
 			currentValue = ''
-		} 
+		}
 	}
 
-	// MANAGE CLICK
+	// MANAGE CLICK, OPTIONS LIKE DEL, DELLALL, ENTER
 	const manageCalculatorClick = e => {
 		if (!calculatorApp.classList.contains('active-app')) return
-		parseInt(currentValue, 10)
 
 		const clickedItemVDatasetValue = e.target.dataset.value
 		const clickedItemDatasetType = e.target.dataset.type
 
-		if (clickedItemDatasetType == 'Number') {
+		currentValue = currentValue.toString()
+
+		if (clickedItemDatasetType == 'Number' && currentValue.length < 16 && currentValue !== "Can't divide by 0!") {
+			currentValue == result ? (currentValue = '') : false
 			currentValue = currentValue.toString() + clickedItemVDatasetValue.toString()
-		} else if (clickedItemDatasetType == 'Solo') {
+		} else if (currentValue != '' && clickedItemDatasetType == 'Solo') {
 			makeAnOperation(clickedItemVDatasetValue)
-		} else if (clickedItemVDatasetValue == ',' && !currentValue.includes(',') && currentValue !== '') {
+		} else if (
+			clickedItemVDatasetValue == '.' &&
+			!currentValue.includes('.') &&
+			currentValue !== '' &&
+			currentValue !== "Can't divide by 0!"
+		) {
 			currentValue = currentValue.toString() + clickedItemVDatasetValue.toString()
 		} else if (clickedItemVDatasetValue == 'Backspace' || e.target.parentElement.dataset.value == 'Backspace') {
 			currentValue = currentValue.toString().slice(0, -1)
@@ -53,7 +66,7 @@ export const calculatorFunction = () => {
 			currentValue = ''
 			prevValue = ''
 			chosenOperation = ''
-		} else if (clickedItemVDatasetValue == '=') {
+		} else if (clickedItemVDatasetValue == '=' && chosenOperation != '') {
 			makeAnOperation(clickedItemVDatasetValue)
 		}
 
@@ -62,7 +75,59 @@ export const calculatorFunction = () => {
 	}
 
 	// OPERATIONS
-	const makeAnOperation = value => {}
+	const makeAnOperation = value => {
+		result = ''
+		const prevNumberValue = parseFloat(prevValue)
+		const currentNumberValue = parseFloat(currentValue)
+		console.log(currentValue, prevValue)
+		if ((prevNumberValue == '' && isNaN(prevNumberValue)) || isNaN(currentNumberValue)) return
+		console.log(prevNumberValue, currentNumberValue)
+
+		switch (chosenOperation) {
+			case '+':
+				result = prevNumberValue + currentNumberValue
+				break
+			case '-':
+				result = prevNumberValue - currentNumberValue
+				break
+			case '*':
+				result = prevNumberValue * currentNumberValue
+				break
+			case '/':
+				if (currentNumberValue == 0) {
+					currentValue = ''
+					prevValue = ''
+					chosenOperation = ''
+					result = "Can't divide by 0!"
+				} else {
+					result = prevNumberValue / currentNumberValue
+				}
+				break
+		}
+
+		switch (value) {
+			case 'log':
+				result = Math.log(currentNumberValue)
+				break
+			case '^':
+				result = Math.pow(currentNumberValue, 2)
+				break
+			case '√':
+				result = Math.sqrt(currentNumberValue, 2)
+				break
+			case 'Inverse':
+				result = currentNumberValue * -1
+				break
+			case 'e':
+				result = currentNumberValue * 2.718281828459
+				break
+		}
+
+		result = result.toString().slice(0, 18)
+		currentValue = result
+		prevValue = ''
+		chosenOperation = ''
+	}
 
 	calculatorBox.addEventListener('click', manageCalculatorClick)
 	// document.addEventListener('keyup', manageKeys)
