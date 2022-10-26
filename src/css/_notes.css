@@ -135,7 +135,7 @@
 
 .note__box--input-title {
 	width: 100%;
-	border-radius: 5px;
+	border-radius: 6px;
 	padding: 0.6em 2em;
 	border: 2px solid var(--text-color);
 }

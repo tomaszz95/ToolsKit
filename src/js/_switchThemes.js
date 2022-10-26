@@ -43,6 +43,7 @@ export const switchPageThemes = () => {
 
 	const switchThemes = () => {
 		switchThemeSlider.classList.toggle('active')
+		
 		if (switchThemeSlider.classList.contains('active')) {
 			switchColorToLight()
 			localStorage.setItem('theme', 'light')

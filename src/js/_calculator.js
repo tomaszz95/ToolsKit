@@ -87,6 +87,7 @@ export const calculatorFunction = () => {
 	const makeAnOperation = value => {
 		let result = ''
 		endResult = ''
+
 		const prevNumberValue = parseFloat(prevValue)
 		const currentNumberValue = parseFloat(currentValue)
 
@@ -135,6 +136,7 @@ export const calculatorFunction = () => {
 		} else {
 			endResult = Math.round((result + Number.EPSILON) * 100) / 100
 		}
+
 		currentValue = endResult
 		prevValue = ''
 		chosenOperation = ''
@@ -186,7 +188,6 @@ export const calculatorFunction = () => {
 		} else if (keysItemVDatasetValue == 'Enter' && chosenOperation != '') {
 			makeAnOperation(keysItemVDatasetValue)
 		}
-		console.log(keysItemVDatasetValue);
 
 		chosenOperationFunction(keysItemVDatasetValue, keysClickedItem.dataset.type)
 		writeOnDisplay()

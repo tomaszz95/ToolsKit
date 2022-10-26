@@ -4,6 +4,7 @@ import { notesAppFunction } from './_notes.js'
 import { financesManagerFunction } from './_finances.js'
 import { calculatorFunction } from './_calculator.js'
 // import { weatherAppFunction } from './_weather.js'
+
 const navContainer = document.querySelector('.nav__container')
 const cookiesBtnsContainer = document.querySelector('.cookies__btns')
 let cookies = localStorage.getItem('cookies')

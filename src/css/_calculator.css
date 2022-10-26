@@ -48,13 +48,13 @@
 }
 
 .calculator__box {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: repeat(6, 1fr);
+	gap: 7px;
 	padding: 1em;
 	width: 100%;
 	height: 79%;
-	display: grid;
-	gap: 7px;
-	grid-template-columns: repeat(4, 1fr);
-	grid-template-rows: repeat(6, 1fr);
 }
 
 .calculator__box-item {
@@ -63,9 +63,9 @@
 	background-color: var(--element-color);
 	border: none;
 	border-radius: 8px;
-	cursor: pointer;
 	box-shadow: 3px 2px 2px var(--text-color-greylish), inset 6px 6px 4px var(--circle-gradient-color);
 	transition: background-color 0.3s;
+	cursor: pointer;
 }
 
 .calculator__box-item.active {

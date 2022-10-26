@@ -30,17 +30,17 @@ export const notesAppFunction = () => {
 	}
 
 	// CREATE NEW NOTE
-	const createNewNote = () => {
+	const createNewNote = (title, content) => {
 		const note = document.createElement('li')
 		note.classList.add('note__body')
 
 		const noteTitle = document.createElement('h3')
 		noteTitle.classList.add('note__body--title')
-		noteTitle.textContent = noteInputTitle.value.trim()
+		noteTitle.textContent = title
 
 		const noteContentBox = document.createElement('p')
 		noteContentBox.classList.add('note__body--content')
-		noteContentBox.textContent = noteTextAreaContent.value.trim()
+		noteContentBox.textContent = content
 
 		const noteTools = document.createElement('div')
 		noteTools.classList.add('note__body--tools')
@@ -63,6 +63,9 @@ export const notesAppFunction = () => {
 
 	// ADD NEW NOTE TO THE LIST AND CHECK FOR ERRORS IN INPUTS
 	const addNewNote = () => {
+		const noteItemTitle = noteInputTitle.value.trim()
+		const noteItemContent = noteTextAreaContent.value.trim()
+
 		if (noteInputTitle.value == '' && noteTextAreaContent.value == '') {
 			noteInputError.style.display = 'block'
 			noteTextAreaError.style.display = 'block'
@@ -73,18 +76,17 @@ export const notesAppFunction = () => {
 			noteInputError.style.display = 'block'
 			noteTextAreaError.style.display = 'none'
 		} else if (noteInputTitle.value !== '' && noteTextAreaContent.value !== '') {
-			createNewNote()
-			manageCookies()
+			createNewNote(noteItemTitle, noteItemContent)
+			manageCookies(noteItemTitle, noteItemContent)
 			checkIfNoteListEmpty()
 			clearInputsAndErrors()
 		}
 	}
 
 	// COOKIES
-	const manageCookies = () => {
-		const lastNote = document.querySelector('.note__list li:last-child')
-		const noteName = lastNote.firstChild.textContent
-		const noteContent = lastNote.firstChild.nextSibling.textContent
+	const manageCookies = (title, content) => {
+		const noteName = title
+		const noteContent = content
 
 		notesObject[noteName] = { noteName, noteContent }
 		localStorage.setItem('notes', JSON.stringify(notesObject))
@@ -99,11 +101,7 @@ export const notesAppFunction = () => {
 
 			if (noteName == '') return
 
-			createNewNote()
-			const lastNote = document.querySelector('.note__list li:last-child')
-			lastNote.firstChild.textContent = noteName
-			lastNote.firstChild.nextSibling.textContent = noteContent
-
+			createNewNote(noteName, noteContent)
 			checkIfNoteListEmpty()
 
 			notesObject[noteName] = { noteName, noteContent }

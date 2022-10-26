@@ -29,6 +29,7 @@ export const financesManagerFunction = () => {
 			const itemPattern = financesItemsFromCookies[item].transactionPattern
 
 			if (itemName == '') return
+
 			createNewItem(itemName, itemNumber, itemType, itemPattern)
 		}
 
@@ -105,6 +106,7 @@ export const financesManagerFunction = () => {
 		const clickedItem = e.target.closest('li')
 		const valueInItem = parseFloat(e.target.closest('div').firstElementChild.textContent)
 		let clickedItemName
+
 		if (
 			e.target.classList.contains('finances__income--item-number-btn') ||
 			e.target.classList.contains('finances__income--x-icon')
@@ -136,6 +138,7 @@ export const financesManagerFunction = () => {
 	// CHECK WHAT ICON SHOULD BE VIEWD
 	const chooseProperIcon = (transactionType, transactionIcon) => {
 		let iconClass
+
 		switch (transactionType) {
 			case 'Work':
 				iconClass = 'fa-briefcase'
@@ -168,6 +171,7 @@ export const financesManagerFunction = () => {
 				iconClass = 'fa-question'
 				break
 		}
+
 		transactionIcon.classList.add('fa-solid')
 		transactionIcon.classList.add(`${iconClass}`)
 	}
@@ -213,7 +217,9 @@ export const financesManagerFunction = () => {
 			expensesList.append(liItem)
 			expensesArr.push(transactionNumber)
 		}
+
 		totalValuesAmount()
+		
 		financesCookiesObject[transactionName] = { transactionName, transactionNumber, transactionType, transactionPattern }
 		localStorage.setItem('finances', JSON.stringify(financesCookiesObject))
 	}
