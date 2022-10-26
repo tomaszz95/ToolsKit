@@ -11,10 +11,9 @@ export const todoListFunction = () => {
 	const todoModalCancelBtn = document.querySelector('.todo__modal--btn-cancel')
 	const navContainer = document.querySelector('.nav__container')
 	let editedTask = ''
-	let taskName
-	let taskNamesForCookies = []
-	let taskIndex = 1
+	let taskCookiesObject = {}
 
+	// CHECK IF TODOS IS EMPTY
 	const checkIfTodoListEmpty = () => {
 		if (todoContainer.children.length == 0) {
 			errorEmptyTodo.style.display = 'block'
@@ -24,15 +23,14 @@ export const todoListFunction = () => {
 		}
 	}
 
-	// CREATE NEW TASK AND INCREASE DATA INDEX
-	const createNewTask = () => {
+	// CREATE NEW TASK AND ADD TO COOKIES
+	const createNewTask = (taskWritenName, taskStatus) => {
 		const task = document.createElement('li')
 		task.classList.add('todo__item')
 
-		taskName = document.createElement('p')
+		const taskName = document.createElement('p')
 		taskName.classList.add('todo__item-task')
-		taskName.textContent = addTaskInput.value.trim()
-		taskName.dataset.todo = taskIndex
+		taskName.textContent = taskWritenName
 
 		const taskTools = document.createElement('div')
 		taskTools.classList.add('todo__item-tools')
@@ -44,6 +42,7 @@ export const todoListFunction = () => {
 		const checkTaskIcon = document.createElement('i')
 		checkTaskIcon.classList.add('fa-solid')
 		checkTaskIcon.classList.add('fa-check')
+		checkTaskIcon.dataset.icon = taskStatus
 
 		const editTaskBtn = document.createElement('button')
 		editTaskBtn.classList.add('todo__item-tools--edit')
@@ -64,39 +63,42 @@ export const todoListFunction = () => {
 		task.append(taskName, taskTools)
 		todoContainer.append(task)
 
-		taskIndex += 2
+		// CHECK CHECKED STATUS WHEN PAGE IS LOADING
+		if (taskStatus == 'Checked') {
+			taskName.classList.add('todo-checked')
+		} else {
+			taskName.classList.remove('todo-checked')
+		}
+
+		checkIfTodoListEmpty()
+
+		taskCookiesObject[taskWritenName] = { taskWritenName, taskStatus }
+		localStorage.setItem('tasks', JSON.stringify(taskCookiesObject))
+	}
+
+	// ADD TASKS FROM LOCAL STORAGE
+	const addCookiesTasks = () => {
+		const taskObjectFromCookies = JSON.parse(localStorage.getItem('tasks'))
+
+		for (const task in taskObjectFromCookies) {
+			const taskCookiesName = taskObjectFromCookies[task].taskWritenName
+			const taskCookiesStatus = taskObjectFromCookies[task].taskStatus
+
+			if (taskCookiesName == '') return
+
+			createNewTask(taskCookiesName, taskCookiesStatus)
+		}
+
 		checkIfTodoListEmpty()
 	}
 
-	// ADD TASKS FROM LOCAL STORAGE AND ADD CLASS 'CHECKED' ON TASK IF USED EARLIER
-	const addCookiesTasks = () => {
-		if (localStorage.getItem('tasks') == null) {
-			return
-		} else {
-			taskNamesForCookies = localStorage.getItem('tasks').split(',')
-
-			for (let i = 0; i < taskNamesForCookies.length; i++) {
-				createNewTask()
-				taskName.textContent = taskNamesForCookies[i]
-				i += 1
-
-				const elementID = taskNamesForCookies.indexOf(taskName.textContent) + 1
-				const elementDataSet = taskName.dataset.todo
-
-				if (taskNamesForCookies[elementID] == 'true') {
-					document.querySelector(`p[data-todo='${elementDataSet}`).classList.add('todo-checked')
-				}
-			}
-		}
-	}
-
-	// ADD NEW TASK, PUSH TASKS AND STARTED STATE FOR CHECKED TO LOCAL STORAGE ALSO CLEAN INPUTS / ERRORS
+	// ADD NEW TASK
 	const addNewTask = () => {
-		if (addTaskInput.value.trim().length != 0) {
-			createNewTask()
-			taskNamesForCookies.push(taskName.textContent)
-			taskNamesForCookies.push('false')
-			localStorage.setItem('tasks', taskNamesForCookies)
+		const taskName = addTaskInput.value.trim()
+		let taskStatus = 'Unchecked'
+
+		if (taskName.length != 0) {
+			createNewTask(taskName, taskStatus)
 			errorEmptyAddInput.style.display = 'none'
 			addTaskInput.value = ''
 		} else {
@@ -117,20 +119,26 @@ export const todoListFunction = () => {
 		}
 	}
 
-	// ADD CHECKED ON TASK, SPLICE ACTUAL CHECKED STATE IN ARRAY AND PUSH TO LOCAL STORAGE
+	// ADD CHECKED ON TASK, UPDATE CHECK STATUS AND UPDATE LOKAL STORAGE
 	const checkDoneTask = e => {
-		const doneTaskName = e.target.closest('div').previousElementSibling
-		const indexOfClickedTask = taskNamesForCookies.indexOf(doneTaskName.textContent) + 1
-		doneTaskName.classList.toggle('todo-checked')
+		const doneTaskItem = e.target.closest('div').previousElementSibling
+		let doneTaskStatus
+		doneTaskItem.classList.toggle('todo-checked')
 
-		if (doneTaskName.classList.contains('todo-checked')) {
+		if (doneTaskItem.classList.contains('todo-checked')) {
 			errorEmptyTodo.style.display = 'none'
-			taskNamesForCookies.splice(indexOfClickedTask, 1, 'true')
+			doneTaskStatus = 'Checked'
 		} else {
-			taskNamesForCookies.splice(indexOfClickedTask, 1, 'false')
+			doneTaskStatus = 'Unchecked'
 		}
 
-		localStorage.setItem('tasks', taskNamesForCookies)
+		for (const task in taskCookiesObject) {
+			if (task == doneTaskItem.textContent) {
+				taskCookiesObject[task].taskStatus = doneTaskStatus
+
+				localStorage.setItem('tasks', JSON.stringify(taskCookiesObject))
+			}
+		}
 	}
 
 	// OPEN MODAL AND BLOCK USING EDIT WHEN TASK IS CHECKED
@@ -148,15 +156,26 @@ export const todoListFunction = () => {
 		}
 	}
 
-	// EDIT TASK AND SPLICE EDITED NAME IN LOCAL STORAGE
+	// EDIT TASK AND UPDATE OBJECT AND LOCAL STORAGE
 	const editAddedTask = () => {
+		let taskWritenName
+		let taskStatus
+
 		if (todoModalEditInput.value.length == 0) {
 			errorEmptyModalInput.style.display = 'block'
 		} else {
-			const elementID = taskNamesForCookies.indexOf(editedTask.textContent)
-			taskNamesForCookies.splice(elementID, 1, todoModalEditInput.value)
+			for (const task in taskCookiesObject) {
+				if (task == editedTask.textContent) {
+					taskWritenName = todoModalEditInput.value
+					taskStatus = taskCookiesObject[task].taskStatus
+
+					delete taskCookiesObject[editedTask.textContent]
+					taskCookiesObject[taskWritenName] = { taskWritenName, taskStatus }
+					localStorage.setItem('tasks', JSON.stringify(taskCookiesObject))
+				}
+			}
+
 			editedTask.textContent = todoModalEditInput.value
-			localStorage.setItem('tasks', taskNamesForCookies)
 			closeModal()
 		}
 	}
@@ -171,15 +190,14 @@ export const todoListFunction = () => {
 	const deleteTask = e => {
 		const taskToDelete = e.target.closest('li')
 		const taskNameToDelete = taskToDelete.firstChild.textContent
-		const indexOfDeletedElement = taskNamesForCookies.indexOf(taskNameToDelete)
 
-		taskNamesForCookies.splice(indexOfDeletedElement, 2)
-		localStorage.setItem('tasks', taskNamesForCookies)
-
-		if (taskNamesForCookies.length == 0) {
-			localStorage.removeItem('tasks')
+		for (const task in taskCookiesObject) {
+			if (task == taskNameToDelete) {
+				delete taskCookiesObject[task]
+				localStorage.setItem('tasks', JSON.stringify(taskCookiesObject))
+			}
 		}
-
+		
 		todoContainer.removeChild(taskToDelete)
 		checkIfTodoListEmpty()
 	}
