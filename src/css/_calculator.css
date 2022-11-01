@@ -8,7 +8,6 @@
 
 .app__title,
 .app__line {
-	display: block;
 	text-align: center;
 	margin: 0 auto;
 }
