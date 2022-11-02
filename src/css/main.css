@@ -528,7 +528,7 @@ body {
 
 	.weather__header {
 		grid-template-columns: 1fr 1fr;
-		grid-template-rows: 1fr 1fr;
+		grid-template-rows: 120px 60px 30px;
 		align-content: center;
 		height: 300px;
 		width: 35%;
@@ -551,6 +551,10 @@ body {
 		padding: 1em;
 		margin: 0;
 		font-size: 1.6em;
+	}
+
+	.weather__box-input-error {
+		font-size: 1.5em;
 	}
 
 	.weather__box-timer {
