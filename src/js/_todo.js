@@ -104,6 +104,7 @@ export const todoListFunction = () => {
 		} else {
 			errorEmptyAddInput.style.display = 'block'
 		}
+		window.scrollTo({ top: document.body.scrollHeight, left: 0, behavior: 'smooth' })
 	}
 
 	// MANAGE TASKS OPTIONS
@@ -154,6 +155,9 @@ export const todoListFunction = () => {
 			todoModalEditInput.value = editedTask.textContent
 			errorEmptyTodo.style.display = 'none'
 		}
+
+		window.scrollTo({ top: (document.body.scrollHeight - 400) / 2, left: 0, behavior: 'smooth' })
+		console.log(document.body.scrollHeight, document.body.scrollHeight / 2)
 	}
 
 	// EDIT TASK AND UPDATE OBJECT AND LOCAL STORAGE
@@ -197,7 +201,7 @@ export const todoListFunction = () => {
 				localStorage.setItem('tasks', JSON.stringify(taskCookiesObject))
 			}
 		}
-		
+
 		todoContainer.removeChild(taskToDelete)
 		checkIfTodoListEmpty()
 	}
