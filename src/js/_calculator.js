@@ -91,6 +91,7 @@ export const calculatorFunction = () => {
 		const prevNumberValue = parseFloat(prevValue)
 		const currentNumberValue = parseFloat(currentValue)
 
+		// TWO NUMBERS OPERATIONS
 		switch (chosenOperation) {
 			case '+':
 				result = prevNumberValue + currentNumberValue
@@ -113,6 +114,7 @@ export const calculatorFunction = () => {
 				break
 		}
 
+		// SINGLE NUMBER OPERATIONS
 		switch (value) {
 			case 'log':
 				result = Math.log(currentNumberValue)
@@ -130,7 +132,7 @@ export const calculatorFunction = () => {
 				result = currentNumberValue * 2.718281828459
 				break
 		}
-
+		
 		if (result == "Can't divide by 0!") {
 			endResult = result
 		} else {

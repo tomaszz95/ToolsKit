@@ -10,7 +10,7 @@ const cookiesBtnsContainer = document.querySelector('.cookies__btns')
 let cookies = localStorage.getItem('cookies')
 let section = localStorage.getItem('section')
 
-// Show cookies banner
+// SHOW COOKIES BANNER
 const showCookiesBanner = () => {
 	if (cookies === 'agree') {
 		document.querySelector('.cookies').style.display = 'none'
@@ -19,7 +19,7 @@ const showCookiesBanner = () => {
 	}
 }
 
-// Cookies info banner
+// COOKIES INFO BANNER
 const cookiesInfo = e => {
 	const cookiesBox = document.querySelector('.cookies')
 
@@ -32,7 +32,7 @@ const cookiesInfo = e => {
 	}
 }
 
-// Switch apps from LocalStorage
+// SWITCH APPS FROM LOCAL STORAGE
 const switchWhenEnterSite = () => {
     for (const btn of navContainer.children) {
         btn.classList.remove('nav__container--item-selected')
@@ -52,7 +52,7 @@ const switchWhenEnterSite = () => {
 	}
 }
 
-// Switch apps when site running
+// SWITCH APPS WHEN SITE IS RUNNING
 const switchNavSelected = e => {
     const main = document.querySelector('.main')
     
