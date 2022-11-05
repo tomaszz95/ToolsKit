@@ -157,7 +157,6 @@ export const todoListFunction = () => {
 		}
 
 		window.scrollTo({ top: (document.body.scrollHeight - 400) / 2, left: 0, behavior: 'smooth' })
-		console.log(document.body.scrollHeight, document.body.scrollHeight / 2)
 	}
 
 	// EDIT TASK AND UPDATE OBJECT AND LOCAL STORAGE
