@@ -19,7 +19,7 @@ notes etc.), and adapted in terms of accessibility.
 - HTML / CSS,
 - page written using BEM methodology - I'm planning to rewrite the whole site using SCSS,
 - JavaScript,
-- page is using Local Storage to contains typed data,
+- page is using Local Storage to contain typed data,
 - git / github.
 
 ## 👩‍💻 Applications
@@ -28,6 +28,6 @@ notes etc.), and adapted in terms of accessibility.
 - **Note App** - add note, edit note, delete note / all notes. Also using Local Storage to store the name of a note and content.
 - **Finances App** - add transaction, allocating transaction to income or expenses, delete transaction / all transactions, count income, expenses and the whole amount. Matches icon with selected type of transaction. Using Local Storage.
 - **Calculator** - the ability to perform basic mathematical calculations, protected from the most common mathematical issues, e.g. dividing by 0.
-- **Weather App** - allows to search weather for cities all around the world - show basic information about weather situation. It also has a clock with the time zone of the selected / chosen city city. Using Local Storage and based on [Weather API](https://openweathermap.org//).
+- **Weather App** - allows to search weather for cities all around the world - shows basic information about weather situation. It also has a clock with the time zone of the selected city. Using Local Storage and based on [Weather API](https://openweathermap.org//).
 
 #### I encourage you to check the website - uploaded to netlifly [ToolsKit](https://toolskit.netlify.app/).
