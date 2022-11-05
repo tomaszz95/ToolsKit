@@ -219,7 +219,7 @@ export const financesManagerFunction = () => {
 		}
 
 		totalValuesAmount()
-		
+
 		financesCookiesObject[transactionName] = { transactionName, transactionNumber, transactionType, transactionPattern }
 		localStorage.setItem('finances', JSON.stringify(financesCookiesObject))
 	}
@@ -246,7 +246,7 @@ export const financesManagerFunction = () => {
 			: (financesModalSelectErr.style.visibility = 'hidden')
 
 		if (financesModalNumberInput.value == '') {
-			financesModalNumberErr.textContent = 'This field cannot be empty!'
+			financesModalNumberErr.textContent = 'This field cannot be empty and must be a number!'
 			financesModalNumberErr.style.visibility = 'visible'
 		} else if (financesModalNumberInput.value == '0') {
 			financesModalNumberErr.textContent = 'Number must be greater or lower than 0!'

@@ -29,7 +29,7 @@ export const calculatorFunction = () => {
 		if (currentValue == '') return
 
 		if (type == 'Operation' && prevValue != '') {
-			makeAnOperation(value)
+			makeAnOperation(value, type)
 		} else if (type == 'Operation' && prevValue == '') {
 			chosenOperation = value
 			prevValue = currentValue
@@ -56,7 +56,7 @@ export const calculatorFunction = () => {
 			currentValue == endResult ? (currentValue = '') : false
 			currentValue = currentValue + clickedItemVDatasetValue.toString()
 		} else if (currentValue != '' && clickedItemDatasetType == 'Solo') {
-			makeAnOperation(clickedItemVDatasetValue)
+			makeAnOperation(clickedItemVDatasetValue, clickedItemDatasetType)
 		} else if (
 			clickedItemVDatasetValue == '.' &&
 			!currentValue.includes('.') &&
@@ -76,15 +76,16 @@ export const calculatorFunction = () => {
 			prevValue = ''
 			chosenOperation = ''
 		} else if (clickedItemVDatasetValue == '=' && chosenOperation != '') {
-			makeAnOperation(clickedItemVDatasetValue)
+			makeAnOperation(clickedItemVDatasetValue, clickedItemDatasetType)
 		}
 
 		chosenOperationFunction(clickedItemVDatasetValue, clickedItemDatasetType)
+		console.log(chosenOperation, clickedItemVDatasetValue);
 		writeOnDisplay()
 	}
 
 	// OPERATIONS
-	const makeAnOperation = value => {
+	const makeAnOperation = (value, type) => {
 		let result = ''
 		endResult = ''
 
@@ -132,16 +133,22 @@ export const calculatorFunction = () => {
 				result = currentNumberValue * 2.718281828459
 				break
 		}
-		
+
 		if (result == "Can't divide by 0!") {
 			endResult = result
 		} else {
 			endResult = Math.round((result + Number.EPSILON) * 100) / 100
 		}
 
-		currentValue = endResult
-		prevValue = ''
-		chosenOperation = ''
+		if (type == 'Operation') {
+			currentValue = ''
+			prevValue = endResult
+			chosenOperation = value
+		} else {
+			currentValue = endResult
+			prevValue = ''
+			chosenOperation = ''
+		}
 	}
 
 	// MANAGE KEYS
